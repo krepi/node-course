@@ -28,6 +28,7 @@ myString.prototype.divide = function (string) {
     if (Number(string) !== 0) {
     return Math.round(this.value / Number(string))
     }
+    else throw new Error("can't divide by Zero");
 }
 // I can use 'let String'  name, but it could override String object and it can be dangerous
 // and create some kind of confusion for other programmers
@@ -37,4 +38,4 @@ let MathString = new myString("100");
 console.log(MathString.plus("30"));
 console.log(MathString.minus("30"));
 console.log(MathString.multiply("30"));
-console.log(MathString.divide("3"));
+console.log(MathString.divide("20"));
