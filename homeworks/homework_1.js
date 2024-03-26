@@ -1,6 +1,7 @@
 //25.03.2024 Monday
 console.log("hello lets make some maths");
 
+ 
 const myString = function (value) {
     if (Number(value) > 0) {
         this.value = Number(value);
@@ -9,9 +10,12 @@ const myString = function (value) {
     }
 
 }
+
+//
 myString.prototype.plus = function (string) {
     return this.value + Number(string);
 }
+
 myString.prototype.minus = function (string) {
     if (this.value > Number(string)) {
 
@@ -21,9 +25,11 @@ myString.prototype.minus = function (string) {
     }
 }
 
+
 myString.prototype.multiply = function (string) {
     return this.value * Number(string);
 }
+
 myString.prototype.divide = function (string) {
     if (Number(string) !== 0) {
     return Math.round(this.value / Number(string))
