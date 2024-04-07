@@ -85,12 +85,21 @@ class DataTransformLibrary {
   static coerceToType(value, type) {
     switch (type) {
       case "string":
-        return String(value);
+        return this.stringifyValue(value);
       case "number":
         const parsed = this.convertToNumber(value);
         return parsed;
       case "boolean":
         return Boolean(value);
+        case 'array':
+          if (Array.isArray(value)) {
+            return value; 
+          } else if (this.isObject(value)) {
+            return Object.entries(value); 
+            
+          } else {
+            return [value]; 
+          }
       default:
         throw new Error("Unknown or unsupported target type.");
     }

@@ -34,3 +34,15 @@ try {
 } catch (error) {
   console.log(error.message);
 }
+try {
+  console.log(
+    DataTransformLibrary.coerceToType({
+      key1: 22,
+      key2: 33,
+      key3: 22,
+      key4: 22,
+    }, "array")
+  );
+} catch (error) {
+  console.log(error.message);
+}
