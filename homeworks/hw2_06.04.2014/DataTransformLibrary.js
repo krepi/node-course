@@ -91,15 +91,14 @@ class DataTransformLibrary {
         return parsed;
       case "boolean":
         return Boolean(value);
-        case 'array':
-          if (Array.isArray(value)) {
-            return value; 
-          } else if (this.isObject(value)) {
-            return Object.entries(value); 
-            
-          } else {
-            return [value]; 
-          }
+      case "array":
+        if (Array.isArray(value)) {
+          return value;
+        } else if (this.isObject(value)) {
+          return Object.entries(value);
+        } else {
+          return [value];
+        }
       default:
         throw new Error("Unknown or unsupported target type.");
     }
