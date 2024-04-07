@@ -31,7 +31,6 @@ class DataTransformLibrary {
    */
 
   static stringifyValue(value) {
-    // if (typeof value === "object" || typeof value === 'array' && value !== null) {
     if (this.isObject(value)) {
       return JSON.stringify(value);
     } else {
