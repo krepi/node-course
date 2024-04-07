@@ -84,7 +84,7 @@ class MathString {
             i--;
             j--;
         }
-        return result.replace(/^0+/, ''); // Usuwa wiodące zera
+        return result.replace(/^0+/, '');
     }
 
 
@@ -119,13 +119,19 @@ class MathString {
             result += String(quotient);
             dividend -= quotient * parseInt(string, 10);
         }
-        return result.replace(/^0+/, '') || '0'; // Remove leading zeros or return '0'
+        return result.replace(/^0+/, '') || '0';
     }
 }
 
-let mathString = new MathString("120");
-console.log(mathString.plus("2333"));
-console.log(mathString.minus("11"));
-console.log(mathString.multiply("111111111"));
-console.log(mathString.divide("20"));
+
+try {
+    let mathString = new MathString("5678");
+
+    console.log(mathString.plus("2333"));
+    console.log(mathString.minus("1189"));
+    console.log(mathString.multiply("111111111"));
+    console.log(mathString.divide("283"));
+} catch (error) {
+    console.error("Something goes wrong: ", error.message);
+}
 
