@@ -46,7 +46,7 @@ class DataTransformLibrary {
    *
    * This method converts various types of values to a boolean, following specific rules:
    * -  `undefined`, and `NaN` are considered invalid and will result in an error.
-   * - Strings "false", "0", "", "null"are converted to `false`.
+   * - Strings "false", "0", "", "null" are converted to `false`.
    * - All other values are converted using the standard JavaScript Boolean conversion,
    *   where falsy values (0, "", etc.) become `false` and truthy values become `true`.
    */
@@ -98,6 +98,33 @@ class DataTransformLibrary {
   }
 
   /**
+   * Converts a given value to an array.
+   * This method converts various types of values to an array, following specific rules:
+   * - If the value is already an array, it returns the value unchanged.
+   * - If the value is an object, it converts the object to an array of its entries ([key, value] pairs).
+   * - For all other types, it returns a single-element array containing the value.
+   *
+   * @param {*} value The value to convert to an array.
+   * @returns {Array} An array representation of the input value.
+   * @throws {Error} If the value is `undefined` or `NaN`, an error is thrown, indicating that conversion is not possible.
+   */
+  static convertToArray(value) {
+    if (value === undefined || Number.isNaN(value)) {
+      throw new Error(
+        "Conversion to array is not possible for 'undefined' or NaN."
+      );
+    }
+
+    if (Array.isArray(value)) {
+      return value;
+    } else if (this.isObject(value)) {
+      return Object.entries(value);
+    } else {
+      return [value];
+    }
+  }
+
+  /**
    * Attempts to convert the type of the value to a specified type.
    * @param {*} value The value to convert.
    * @param {string} type The target type of the value ('string', 'number', 'boolean').
@@ -114,13 +141,7 @@ class DataTransformLibrary {
       case "boolean":
         return this.convertToBoolean(value);
       case "array":
-        if (Array.isArray(value)) {
-          return value;
-        } else if (this.isObject(value)) {
-          return Object.entries(value);
-        } else {
-          return [value];
-        }
+        return this.convertToArray(value);
       default:
         throw new Error("Unknown or unsupported target type.");
     }
