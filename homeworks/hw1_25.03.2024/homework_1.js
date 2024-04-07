@@ -120,6 +120,7 @@ class MathString {
     }
     return result.join("").replace(/^0+/, "");
   }
+
   /**
    * Divides the current MathString value by another string-represented number.
    * @param {string} string - The divisor, as a string.
