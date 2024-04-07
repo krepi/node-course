@@ -127,7 +127,7 @@ class DataTransformLibrary {
   /**
    * Attempts to convert the type of the value to a specified type.
    * @param {*} value The value to convert.
-   * @param {string} type The target type of the value ('string', 'number', 'boolean').
+   * @param {string} type The target type of the value ('string', 'number', 'boolean', 'array').
    * @returns {*} The value converted to the target type.
    * @throws {Error} If conversion to the specified type is not possible.
    */
