@@ -39,6 +39,29 @@ class DataTransformLibrary {
   }
 
   /**
+   * Converts a value to a boolean.
+   * @param {*} value The value to convert.
+   * @returns {boolean} The boolean representation of the input value.
+   * @throws {Error} Throws an error if the value is  `undefined`, or `NaN`.
+   *
+   * This method converts various types of values to a boolean, following specific rules:
+   * -  `undefined`, and `NaN` are considered invalid and will result in an error.
+   * - Strings "false", "0", "", "null"are converted to `false`.
+   * - All other values are converted using the standard JavaScript Boolean conversion,
+   *   where falsy values (0, "", etc.) become `false` and truthy values become `true`.
+   */
+  static convertToBoolean(value) {
+    if (value === undefined || Number.isNaN(value)) {
+      throw new Error("Cannot convert 'undefined' or NaN to boolean");
+    }
+    if (value === "false" || value === "0" || value === "" || value === null) {
+      return false;
+    }
+
+    return Boolean(value);
+  }
+
+  /**
    * Inverts a boolean value.
    * @param {boolean} value The value to invert.
    * @returns {boolean} The inverted boolean value.
@@ -87,10 +110,9 @@ class DataTransformLibrary {
       case "string":
         return this.stringifyValue(value);
       case "number":
-        const parsed = this.convertToNumber(value);
-        return parsed;
+        return this.convertToNumber(value);
       case "boolean":
-        return Boolean(value);
+        return this.convertToBoolean(value);
       case "array":
         if (Array.isArray(value)) {
           return value;
