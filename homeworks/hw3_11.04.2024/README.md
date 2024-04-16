@@ -1,4 +1,4 @@
-# Programming Concepts Library
+# Functional Programming Concepts Library
 
 ## Overview
 
