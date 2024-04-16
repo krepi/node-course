@@ -31,3 +31,10 @@ lazyMapped.next(),
 lazyMapped.next(), 
 lazyMapped.next(), 
 lazyMapped.next());
+
+const generatedFibonacci = LazyEvaluation.fibonacciGenerator();
+
+for (let i = 0; i < 10; i++) {
+    console.log(`Fibonacci number ${i + 1}:`, generatedFibonacci.next().value);
+}
+
