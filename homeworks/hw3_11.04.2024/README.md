@@ -15,7 +15,7 @@ This library is designed to demonstrate key programming principles and practices
 To use this library in your projects, download or clone the repository and include the files in your project directory.
 
 \```bash
-git clone https://yourrepositoryurl.com/path/to/repo
+git clone https://github.com/krepi/node-course/tree/main/homeworks/hw3_11.04.2024
 \```
 
 ## Usage
