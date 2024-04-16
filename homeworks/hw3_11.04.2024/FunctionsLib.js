@@ -72,9 +72,9 @@ class FunctionComposition {
      * @param {string} text - The input text.
      * @returns {string[]} Array of unique, sorted words.
      */
+    
     static filterUniqueWords(text) {
-        // return [...new Set(text.match(/\w+/g))]
-        //     .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+  
         const words = text.match(/\w+/g) || [];
         const wordMap = words.reduce((map, word) => {
             const lowerWord = word.toLowerCase();
