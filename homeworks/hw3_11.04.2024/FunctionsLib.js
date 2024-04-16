@@ -68,14 +68,24 @@ class FunctionComposition {
     }
 
     /**
-     * Filter unique words from a text and sort them alphabetically.
+     * Filter unique words from a text and sort them alphabetically in a case-insensitive.
      * @param {string} text - The input text.
      * @returns {string[]} Array of unique, sorted words.
      */
     static filterUniqueWords(text) {
-        return [...new Set(text.match(/\w+/g))].sort();
-    }
+        // return [...new Set(text.match(/\w+/g))]
+        //     .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+        const words = text.match(/\w+/g) || [];
+        const wordMap = words.reduce((map, word) => {
+            const lowerWord = word.toLowerCase();
+            if (!map.has(lowerWord)) {
+                map.set(lowerWord, word);
+            }
+            return map;
+        }, new Map());
 
+        return Array.from(wordMap.values()).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+    }
     /**
      * Calculate the average grade from an array of students.
      * @param {Array<{grades: number}>} students - Array of students.
