@@ -15,7 +15,7 @@ This library is designed to demonstrate key programming principles and practices
 To use this library in your projects, download or clone the repository and include the files in your project directory.
 
 \```bash
-git clone https://yourrepositoryurl.com/path/to/repo
+git clone https://github.com/krepi/node-course/tree/main/homeworks/hw3_11.04.2024
 \```
 
 ## Usage
@@ -25,7 +25,7 @@ git clone https://yourrepositoryurl.com/path/to/repo
 You can import the required classes from the library like so:
 
 \```javascript
-const { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } = require("./library.js");
+const { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } = require("./Functionlib.js");
 \```
 
 ### ES6 Modules
@@ -33,7 +33,7 @@ const { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimi
 For those using ES6 modules, import the classes using the following syntax:
 
 \```javascript
-import { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } from './library.js';
+import { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } from './Functionlib.js';
 \```
 
 ### Example Code
@@ -41,9 +41,9 @@ import { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptim
 Here is an example of how to use the `PureFunctions` class to apply discounts and calculate total price:
 
 \```javascript
-const products = [{ price: 100 }, { price: 200 }];
+const products = [{name:"product1", price: 100 }, {name:"product2", price: 200 }];
 const discountedProducts = PureFunctions.calculateDiscountedPrice(products, 10);
-console.log(discountedProducts); // [{ price: 90 }, { price: 180 }]
+console.log(discountedProducts); // [{name:"product1", price: 90 }, {name:"product1", price: 180 }]
 
 const totalPrice = PureFunctions.calculateTotalPrice(discountedProducts);
 console.log('Total Price:', totalPrice); // Total Price: 270
