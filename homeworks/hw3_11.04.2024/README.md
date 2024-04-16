@@ -25,7 +25,7 @@ git clone https://github.com/krepi/node-course/tree/main/homeworks/hw3_11.04.202
 You can import the required classes from the library like so:
 
 \```javascript
-const { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } = require("./Functionlib.js");
+const { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } = require("./FunctionLib.js");
 \```
 
 ### ES6 Modules
@@ -33,7 +33,7 @@ const { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimi
 For those using ES6 modules, import the classes using the following syntax:
 
 \```javascript
-import { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } from './Functionlib.js';
+import { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } from './FunctionLib.js';
 \```
 
 ### Example Code
