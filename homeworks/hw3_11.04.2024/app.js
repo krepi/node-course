@@ -2,7 +2,7 @@
 const { PureFunctions, FunctionComposition, ClosuresHigherOrder, RecursionOptimization, LazyEvaluation } = require('./FunctionsLib.js');
 
 // Using PureFunctions
-const products = [{ price: 100 }, { price: 200 }];
+const products = [{name: "butter", price: 100 }, {name:"bread", price: 200 }];
 const discountedProducts = PureFunctions.calculateDiscountedPrice(products, 10);
 console.log('Discounted Products:', discountedProducts);
 
@@ -10,10 +10,10 @@ const totalPrice = PureFunctions.calculateTotalPrice(products);
 console.log('Total Price:', totalPrice);
 
 // Using FunctionComposition
-const person = { firstName: 'John', lastName: 'Doe' };
+const person = { firstName: 'Przemyslaw', lastName: 'Doe' };
 console.log('Full Name:', FunctionComposition.getFullName(person));
 
-const text = "hello world hello";
+const text = "Fun Node in Fun backend  fun";
 console.log('Unique Words:', FunctionComposition.filterUniqueWords(text));
 
 // Using ClosuresHigherOrder
