@@ -76,6 +76,12 @@ class FunctionComposition {
       Array.from(this.#toLowerCaseUnique(this.#extractWords(text)).values())
     );
   }
+  /**
+   * Calculate the average grade from an array of students.
+   * @param {Array<{grades: number}>} students - Array of students.
+   * @returns {number} Average grade of all students.
+   */
+  static getAverageGrade = (students) => students.map(this.#getStudentInfo);
 
   //Private methods
 
@@ -109,14 +115,23 @@ class FunctionComposition {
     words.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
   /**
-   * Calculate the average grade from an array of students.
-   * @param {Array<{grades: number}>} students - Array of students.
-   * @returns {number} Average grade of all students.
+   * Calculates the average grade from an object of grades.
+   * @param {Object<number>} grades - Object containing grades for different subjects.
+   * @returns {number} The average grade.
    */
-  static getAverageGrade(students) {
-    const total = students.reduce((sum, student) => sum + student.grades, 0);
-    return total / students.length;
-  }
+  static #getAverage = (grades) => {
+    const total = Object.values(grades).reduce((acc, grade) => acc + grade, 0);
+    return total / Object.keys(grades).length;
+  };
+  /**
+   * Extracts student information including name and average grade.
+   * @param {Object} student - Student object.
+   * @returns {Object} Object containing student's name and average grade.
+   */
+  static #getStudentInfo = (student) => ({
+    name: student.name,
+    average: this.#getAverage(student.grades),
+  });
 }
 
 // Task 3: Closures and Higher-Order Functions

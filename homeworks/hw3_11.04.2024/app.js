@@ -16,6 +16,26 @@ console.log('Full Name:', FunctionComposition.getFullName(person));
 const text = "Fun Node in Fun backend  fun";
 console.log('Unique Words:', FunctionComposition.filterUniqueWords(text));
 
+const students = [
+    {
+      name: "peter",
+      grades: {
+        math: 3,
+        eng: 3,
+      },
+    },
+    {
+      name: "mary",
+      grades: {
+        math: 4,
+        eng: 4,
+      },
+    },
+  ];
+  
+  console.log('Students grades: ',FunctionComposition.getAverageGrade(students));
+
+
 // Using ClosuresHigherOrder
 const counter = ClosuresHigherOrder.createCounter();
 console.log('Counter:', counter(), counter());
