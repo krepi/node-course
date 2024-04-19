@@ -81,7 +81,7 @@ class FunctionComposition {
    * @param {Array<{grades: number}>} students - Array of students.
    * @returns {number} Average grade of all students.
    */
-  static getAverageGrade = (students) => students.map(this.#getStudentInfo);
+  static getAverageGrade = (students) => students.map(this.#getStudentInfo); // is it point free (students.map)?
 
   //Private methods
 
@@ -120,8 +120,11 @@ class FunctionComposition {
    * @returns {number} The average grade.
    */
   static #getAverage = (grades) => {
-    const total = Object.values(grades).reduce((acc, grade) => acc + grade, 0);
-    return total / Object.keys(grades).length;
+    // const total = Object.values(grades).reduce((acc, grade) => acc + grade, 0);
+    return parseFloat(
+      Object.values(grades).reduce((acc, grade) => acc + grade, 0) /
+        Object.keys(grades).length
+    );
   };
   /**
    * Extracts student information including name and average grade.

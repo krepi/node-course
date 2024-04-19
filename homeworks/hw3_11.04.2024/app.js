@@ -21,13 +21,13 @@ const students = [
       name: "peter",
       grades: {
         math: 3,
-        eng: 3,
+        eng: 4,
       },
     },
     {
       name: "mary",
       grades: {
-        math: 4,
+        math: 5,
         eng: 4,
       },
     },
