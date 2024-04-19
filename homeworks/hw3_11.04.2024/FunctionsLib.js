@@ -120,10 +120,11 @@ class FunctionComposition {
    * @returns {number} The average grade.
    */
   static #getAverage = (grades) => {
-    // const total = Object.values(grades).reduce((acc, grade) => acc + grade, 0);
     return parseFloat(
-      Object.values(grades).reduce((acc, grade) => acc + grade, 0) /
+      (
+        Object.values(grades).reduce((acc, grade) => acc + grade, 0) /
         Object.keys(grades).length
+      ).toFixed(2)
     );
   };
   /**
