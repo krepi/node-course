@@ -1,5 +1,22 @@
 const ObjectsLib = require("./ObjectsLib.js");
 // Task 1: Object Property Manipulation
+/**
+ * @typedef {Object} Person
+ * @property {string} firstName - The first name of the person.
+ * @property {string} lastName - The last name of the person.
+ * @property {number} age - The age of the person.
+ * @property {string} email - The email address of the person.
+ * @property {Object} grades - The grades of the person.
+ * @property {number} grades.math - The math grade of the person.
+ * @property {number} grades.eng - The English grade of the person.
+ * @property {Array<number>} array - An array property.
+ * @property {Function} updateInfo - A function to update person information.
+ */
+
+/**
+ * Task 1: Object Property Manipulation
+ * @type {Person}
+ */
 const person = {
   firstName: "John",
   lastName: "Doe",
@@ -10,7 +27,11 @@ const person = {
     eng: 3,
   },
   array: [1, 2, 3],
-
+  /**
+   * Updates the person information with the provided newInfo object.
+   *
+   * @param {Object} newInfo - The object containing new information to update.
+   */
   updateInfo(newInfo) {
     Object.keys(newInfo).forEach((key) => {
       if (
@@ -80,7 +101,13 @@ const bankAccount = {
   get formattedBalance() {
     return `$${this._balance}`;
   },
-
+  /**
+   * Transfers an amount from sender to receiver.
+   *
+   * @param {Object} sender - The sender account.
+   * @param {Object} receiver - The receiver account.
+   * @param {number} amount - The amount to transfer.
+   */
   transfer(sender, receiver, amount) {
     sender.balance -= amount;
     receiver.balance += amount;
