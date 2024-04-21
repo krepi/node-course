@@ -18,26 +18,34 @@ class ObjectsLib {
       console.log(`There is no property named ${prop} at this object`);
     }
   }
-  
+
   //   Task 4: Advanced Property Descriptors
   static createImmutableObject(obj) {
-    const immutableObj = {};
+    if (typeof obj !== "object" || obj === null) {
+      return obj;
+    }
 
-    for (let key in obj) {
-      if (typeof obj[key] === "object" && obj[key] !== null) {
-        immutableObj[key] = this.createImmutableObject(obj[key]);
-      } else {
-        Object.defineProperty(immutableObj, key, {
-          value: obj[key],
+    return Object.keys(obj).reduce(
+      (clone, key) => {
+        const value = obj[key];
+        clone[key] =
+          typeof value === "object" && value !== null
+            ? this.createImmutableObject(value)
+            : value;
+
+        Object.defineProperty(clone, key, {
+          value: clone[key],
           writable: false,
           enumerable: true,
           configurable: false,
         });
-      }
-    }
 
-    return immutableObj;
+        return clone;
+      },
+      Array.isArray(obj) ? [] : {}
+    );
   }
+
   //   Task 5: Object Observation
   static observeObject(obj, callback) {
     return new Proxy(obj, {
@@ -71,12 +79,19 @@ class ObjectsLib {
   //   Task 7: Object Property Validation
 
   static validateObject(obj, schema) {
-    for (let key in schema) {
+    for (const key in schema) {
       if (!obj.hasOwnProperty(key)) {
         return false;
       }
 
-      if (typeof obj[key] !== schema[key]) {
+      if (typeof schema[key] === "object") {
+        if (
+          typeof obj[key] !== "object" ||
+          !this.validateObject(obj[key], schema[key])
+        ) {
+          return false;
+        }
+      } else if (typeof obj[key] !== schema[key]) {
         return false;
       }
     }

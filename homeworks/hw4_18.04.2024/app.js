@@ -9,6 +9,8 @@ const person = {
     math: 4,
     eng: 3,
   },
+  array: [1, 2, 3],
+
   updateInfo(newInfo) {
     Object.keys(newInfo).forEach((key) => {
       if (
@@ -33,6 +35,16 @@ Object.defineProperty(person, "address", {
   enumerable: false,
   configurable: false,
 });
+//Task 1 logs :
+console.log("\nTask 1: Object Property Manipulation\n");
+console.log("Before update: ", person);
+person.updateInfo({
+  firstName: "Jane",
+  age: 32,
+  address: { city: "New York", country: "USA" },
+  grades: { math: 2, eng: 2 },
+});
+console.log("After Update :", person);
 
 // Task 2: Object Property Enumeration and Deletion
 
@@ -47,6 +59,12 @@ Object.defineProperty(product, "quantity", {
   enumerable: false,
   writable: false,
 });
+
+//Task 2 logs
+console.log("\nTask 2: Object Property Enumeration and Deletion\n");
+console.log("Total price :", ObjectsLib.getTotalPrice(product));
+ObjectsLib.deleteNonConfigurable(product, "price");
+console.log("product after : ", product.price);
 
 // Task 3: Object Property Getters and Setters
 const bankAccount = {
@@ -71,23 +89,6 @@ const bankAccount = {
 
 Object.defineProperty(bankAccount, "formattedBalance", { enumerable: false });
 
-//Task 1 logs :
-console.log("\nTask 1: Object Property Manipulation\n");
-console.log("Before update: ", person);
-person.updateInfo({
-  firstName: "Jane",
-  age: 32,
-  address: { city: "New York", country: "USA" },
-  grades: { math: 2, eng: 2 },
-});
-console.log("After Update :", person);
-
-//Task 2 logs
-console.log("\nTask 2: Object Property Enumeration and Deletion\n");
-console.log("Total price :", ObjectsLib.getTotalPrice(product));
-ObjectsLib.deleteNonConfigurable(product, "price");
-console.log("product after : ", product.price);
-
 // Task 3 logs
 console.log("\nTask 3: Object Property Getters and Setters\n");
 const account1 = Object.create(bankAccount);
@@ -99,6 +100,21 @@ console.log("After transfer (sender):", account1.formattedBalance);
 console.log("After transfer (receiver):", account2.balance);
 console.log("After transfer (receiver):", account2.formattedBalance);
 
+//Task 4: Advanced Property Descriptors
+console.log("\nTask 4: Advanced Property Descriptors\n");
+const immutablePerson = ObjectsLib.createImmutableObject(person);
+console.log("Immutable: ", immutablePerson);
+immutablePerson.updateInfo({
+  firstName: "Jane",
+  age: 32,
+  address: { city: "New York", country: "USA" },
+  grades: { math: 5, eng: 5 },
+});
+immutablePerson.grades.math = 3;
+immutablePerson.array[0] = 7;
+immutablePerson.array[1] = 7;
+console.log("\nImmutable after update: ", immutablePerson);
+
 //Task 5: Object Observation
 console.log("\nTask 5: Object Observation\n");
 const observedPerson = ObjectsLib.observeObject(person, (prop, action) => {
@@ -106,6 +122,7 @@ const observedPerson = ObjectsLib.observeObject(person, (prop, action) => {
 });
 console.log(observedPerson.firstName);
 observedPerson.age = 35;
+
 //   Task 6: Object Deep Cloning
 console.log("\nTask 6: Object Deep Cloning\n");
 const deepClone = ObjectsLib.deepCloneObject(person);
@@ -118,7 +135,13 @@ const schema = {
   lastName: "string",
   age: "number",
   email: "string",
+  grades: {
+    math: "number",
+    eng: "number",
+  },
+  array: "object",
+  updateInfo: "function",
 };
 
 const isValid = ObjectsLib.validateObject(person, schema);
-console.log(`The object is valid = ${isValid}`);
+console.log(`The object is valid ? = ${isValid}`);
