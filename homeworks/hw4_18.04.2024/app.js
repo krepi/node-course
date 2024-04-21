@@ -149,6 +149,7 @@ const observedPerson = ObjectsLib.observeObject(person, (prop, action) => {
 });
 console.log(observedPerson.firstName);
 observedPerson.age = 35;
+console.log(observedPerson.age)
 
 //   Task 6: Object Deep Cloning
 console.log("\nTask 6: Object Deep Cloning\n");
