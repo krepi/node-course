@@ -35,6 +35,7 @@ class ObjectsLib {
    */
 
   static getTotalPrice(obj) {
+    if(obj.hasOwnProperty("price") && obj.hasOwnProperty("quantity"))
     return (
       Object.getOwnPropertyDescriptor(obj, "price").value *
       Object.getOwnPropertyDescriptor(obj, "quantity").value
