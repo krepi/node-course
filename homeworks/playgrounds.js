@@ -92,18 +92,27 @@ console.log(recCopyAndDoubleArray(array));
 console.log(recForEach(array));
 console.log(sumAr(ar));
 
-const nums =[22,7,2,8];
+const nums = [22, 7, 2, 8];
 const target = 9;
 const twoSum = function (nums, target) {
   const comp = {};
   for (let i = 0; i < nums.length; i++) {
-  
     if (comp.hasOwnProperty(nums[i])) {
       return [comp[nums[i]], i];
     }
     comp[target - nums[i]] = i;
-
   }
-
 };
-console.log(twoSum(nums,target));
+console.log(twoSum(nums, target));
+
+const arrayY = [
+  "name",
+  function hello() {
+    console.log("hello");
+  },
+];
+
+const [name, hello] = arrayY;
+
+hello();
+console.log(["hllo"] + 1);
