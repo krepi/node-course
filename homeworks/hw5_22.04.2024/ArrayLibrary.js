@@ -33,12 +33,12 @@ class ArrayLibrary {
   }
   //Task 3: Array Shuffling
   /**
-   *
+   * As a shuffler was used  Fisher-Yates algorythm 
    * @param {Array} array array given to shuffle
    * @returns {Array} shuffled array
    */
   static customShuffle(array) {
-    const result = array.slice();
+    const result = [...array];
     for (let i = result.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [result[i], result[j]] = [result[j], result[i]];
@@ -63,7 +63,6 @@ class ArrayLibrary {
    */
   static getArrayUnion(arrayOne, arrayTwo) {
     const set = new Set([...arrayOne, ...arrayTwo]);
-
     return Array.from(set);
   }
   //Task 5: Array Performance Analysis
