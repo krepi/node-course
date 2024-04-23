@@ -1,15 +1,83 @@
 class ArrayLibrary {
   // Task 1: Advanced Array Filtering
-  static customFilterUnique(array, callback) {}
+  /**
+   *
+   * @param {*} array
+   * @param {*} callback
+   * @returns
+   */
+  static customFilterUnique(array, callback) {
+    const uniqueResults = new Map();
+    for (const item of array) {
+      const key = callback(item);
+      if (!uniqueResults.has(key)) {
+        uniqueResults.set(key, item);
+      }
+    }
+    return Array.from(uniqueResults.values());
+  }
+
   // Task 2: Array Chunking
-  static chunkArray(array,chunk) {}
+  /**
+   *
+   * @param {*} array array given to separate
+   * @param {*} chunk lenght of separated part
+   * @returns {Array} array of arrays with separated parts
+   */
+  static chunkArray(array, chunk) {
+    let chunks = [];
+    for (let i = 0; i < array.length; i += chunk) {
+      chunks.push(array.slice(i, i + chunk));
+    }
+    return chunks;
+  }
   //Task 3: Array Shuffling
-  static customShuffle(array) {}
+  /**
+   *
+   * @param {Array} array array given to shuffle
+   * @returns {Array} shuffled array
+   */
+  static customShuffle(array) {
+    const result = array.slice();
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+  }
+
   //Task 4: Array Intersection and Union
-  static getArrayIntersection(arrayOne, arrayTwo) {}
-  static getArrayUnion(arrayOne, arrayTwo) {}
+  /**
+   *
+   * @param {*} arrayOne
+   * @param {*} arrayTwo
+   */
+  static getArrayIntersection(arrayOne, arrayTwo) {
+    const set = new Set(arrayTwo);
+    return arrayOne.filter((x) => set.has(x));
+  }
+  /**
+   *
+   * @param {*} arrayOne
+   * @param {*} arrayTwo
+   */
+  static getArrayUnion(arrayOne, arrayTwo) {
+    const set = new Set([...arrayOne, ...arrayTwo]);
+
+    return Array.from(set);
+  }
   //Task 5: Array Performance Analysis
-  static measureArrayPerformance(array, fn){}
+  /**
+   *
+   * @param {*} array
+   * @param {*} fn
+   */
+  static measureArrayPerformance(fn, args) {
+    let t1 = performance.now();
+    fn(...args);
+    let t2 = performance.now();
+    return `Time elapsed: ${(t2 - t1) / 1000}`;
+  }
 }
 
-exports.modules = ArrayLibrary;
+module.exports = ArrayLibrary;
