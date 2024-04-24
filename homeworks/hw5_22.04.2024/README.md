@@ -14,9 +14,9 @@ This library is designed to demonstrate key programming principles and practices
 
 To use this library in your projects, download or clone the repository and include the files in your project directory.
 
-\```bash
+```bash
 git clone https://github.com/krepi/node-course/tree/main/homeworks/hw5_22.04.2024
-\```
+```
 
 ## Usage
 
@@ -24,23 +24,23 @@ git clone https://github.com/krepi/node-course/tree/main/homeworks/hw5_22.04.202
 
 You can import the required classes from the library like so:
 
-\```javascript
+```javascript
 const ArrayLibrary = require("./ArrayLibrary.js");
-\```
+```
 
 ### ES6 Modules
 
 For those using ES6 modules, import the classes using the following syntax:
 
-\```javascript
+```javascript
 import ArrayLibrary from './ArrayLibrary.js';
-\```
+```
 
 ### Example Code
 
 Here is an example of how to use the `customShuffle` and `measureArrayPerformance` methods to shuffle randomly (using Fisher-Yates algorythm) array and measure time of it:
 
-\```javascript
+```javascript
   // Example usage
   const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   try {
@@ -58,7 +58,7 @@ Here is an example of how to use the `customShuffle` and `measureArrayPerformanc
   } catch (error) {
     console.error(error);
   }
-\```
+```
 
 ## Documentation
 
