@@ -109,8 +109,14 @@ const bankAccount = {
    * @param {number} amount - The amount to transfer.
    */
   transfer(sender, receiver, amount) {
-    sender.balance -= amount;
-    receiver.balance += amount;
+    if(sender.balance >= amount){
+      sender.balance -= amount;
+      receiver.balance += amount;
+    } else {
+      console.log("There is no enough funds on your account")
+      // throw new Error("There is no enough funds on your account")
+    }
+    
   },
 };
 
@@ -120,7 +126,7 @@ Object.defineProperty(bankAccount, "formattedBalance", { enumerable: false });
 console.log("\nTask 3: Object Property Getters and Setters\n");
 const account1 = Object.create(bankAccount);
 const account2 = Object.create(bankAccount);
-account1.transfer(account1, account2, 300);
+account1.transfer(account1, account2, 1300);
 
 console.log("After transfer (sender): ", account1.balance);
 console.log("After transfer (sender):", account1.formattedBalance);
