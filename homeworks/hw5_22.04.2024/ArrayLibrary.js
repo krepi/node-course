@@ -65,10 +65,14 @@ class ArrayLibrary {
    * @returns {Array} array of arrays with separated parts
    */
   static chunkArray(array, chunk) {
+    if (chunk > array.length) {
+      throw new Error("Your chunk is larger than array to be chunked");
+    }
     let chunks = [];
     for (let i = 0; i < array.length; i += chunk) {
       chunks.push(array.slice(i, i + chunk));
     }
+
     return chunks;
   }
   //Task 3: Array Shuffling
@@ -90,7 +94,7 @@ class ArrayLibrary {
   /**
    * Return array containing common elements of two given arrays
    * @param {Array} arrayOne array to find intersection
-   * @param {Array} arrayTwo array to find intersection 
+   * @param {Array} arrayTwo array to find intersection
    * @returns {Array} array of common elements
    */
   static getArrayIntersection(arrayOne, arrayTwo) {
@@ -98,7 +102,7 @@ class ArrayLibrary {
     return arrayOne.filter((x) => set.has(x));
   }
   /**
-   * Return array containing elements without duplicates from two given arrays 
+   * Return array containing elements without duplicates from two given arrays
    * @param {Array} arrayOne array to union
    * @param {Array} arrayTwo array to union
    * @returns {Array} array contains elements after union
@@ -112,7 +116,7 @@ class ArrayLibrary {
    *  Measure performance of given methods
    * @param {Array} args array of arguments measured method
    * @param {Function} fn method to measure
-   * @returns {String} information of time elapsed 
+   * @returns {String} information of time elapsed
    */
   static measureArrayPerformance(fn, args) {
     let t1 = performance.now();
