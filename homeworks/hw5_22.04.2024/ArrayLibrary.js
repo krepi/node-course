@@ -61,12 +61,12 @@ class ArrayLibrary {
   /**
    * Divide the given array into smaller arrays of specified size
    * @param {Array} array array given to separate
-   * @param {number} chunk lenght of separated part
+   * @param {number} chunk lenght of separated part, must be a positive number and less than or equal to the array length.
    * @returns {Array} array of arrays with separated parts
    */
   static chunkArray(array, chunk) {
-    if (chunk > array.length) {
-      throw new Error("Your chunk is larger than array to be chunked");
+    if (chunk > array.length || chunk <= 0) {
+      throw new Error("Chunk size must be a positive number and less than or equal to the array length.");
     }
     let chunks = [];
     for (let i = 0; i < array.length; i += chunk) {
