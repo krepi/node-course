@@ -32,10 +32,10 @@ class MathString {
     } else if (a.length > b.length) {
       return true;
     }
-    for (let k = 0; k < a.length; k++) {
-      if (parseInt(a[k], 10) < parseInt(b[k], 10)) {
+    for (let i = 0; i < a.length; i++) {
+      if (parseInt(a[i], 10) < parseInt(b[i], 10)) {
         return false;
-      } else if (parseInt(a[k], 10) > parseInt(b[k], 10)) {
+      } else if (parseInt(a[i], 10) > parseInt(b[i], 10)) {
         return true;
       }
     }
