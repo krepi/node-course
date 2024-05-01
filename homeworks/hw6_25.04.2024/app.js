@@ -8,6 +8,9 @@
  * @version 1.0.0
  * @author [Przemyslaw Krepski]
  */
+
+//Task 1: Quasi-Tagged Templates
+
 const translations = {
   en: {
     greet: "Hello",
@@ -31,6 +34,9 @@ function localize(...template) {
       : "";
   }, "");
 }
+
+// Task 2: Advanced Tagged Template
+
 /**
  * Highlights the given keywords in the text template.
  * @param {string} template Text template.
@@ -46,6 +52,9 @@ function highlightKeywords(template, keywords) {
   });
   return result;
 }
+
+// Task 3: Multiline Tagged Template
+
 /**
  * Adds line numbering to the given multiline text.
  * @param {TemplateStringsArray} strings Multiline text.
@@ -63,6 +72,9 @@ function multiline(strings) {
     .filter((line) => line !== undefined);
   return numberedLines.join("\n");
 }
+
+// Task 4: Implementing Debounce Function
+
 /**
  * Executes a delayed search query.
  * @param {string} query Search query.
@@ -85,6 +97,9 @@ function debounce(fn, delay) {
     }, delay);
   };
 }
+
+//Task 5: Implementing Throttle Function
+
 /**
  * Displays information about a scroll event.
  * @param {Event} event Scroll event.
@@ -148,28 +163,6 @@ function throttleInput(fn, delay) {
   };
 }
 
-// function throttleInput(fn, delay) {
-//   let flag = true;
-//   let waitingArgs;
-//   const timeoutFn = () => {
-//     if (waitingArgs !== undefined) {
-//       fn(...waitingArgs);
-//       waitingArgs = undefined;
-//       setTimeout(timeoutFn, delay);
-//     } else {
-//       flag = true;
-//     }
-//   };
-//   return (...args) => {
-//     if (flag) {
-//       fn(...args);
-//       flag = false;
-//       setTimeout(timeoutFn, delay);
-//     } else {
-//       waitingArgs = args;
-//     }
-//   };
-// }
 /**
  * Displays delayed search results.
  * @param {string} query Search query.
@@ -177,6 +170,9 @@ function throttleInput(fn, delay) {
 function throttledSearch(query) {
   document.getElementById("throttledInput").innerText = query;
 }
+
+// Task 6: Currying Function Implementation
+
 /**
  * Multiplies the given numbers.
  * @param {number} a First number.
@@ -203,6 +199,9 @@ const curry = (func, arity = func.length) =>
       1;
     }
   };
+
+//Task 6.a: Currying Function Implementation (extended)
+
 /**
  * Creates a curried version of the provided function allowing partial application with placeholders.
  * @param {Function} func Function to be curried.
@@ -223,8 +222,13 @@ const curryExt = (func, arity = func.length) =>
     }
   };
 
+/**
+ * Function handling code execution after the entire document content has loaded.
+ * It performs tasks related to localization, text formatting, and event handling.
+ * @listens DOMContentLoaded
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
-  const language = "fr";
   const greeting = "greet";
   const introduction = "intro";
   const localizedGreeting = localize`${greeting}`;
