@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homework 6</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .highlight {
+        font-weight: bold;
+        color: red;
+      }
+      input[type="text"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+      }
+    </style>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div id="task1">
+      <h3>Task 1: Quasi-Tagged Templates</h3>
+      <p id="greet"></p>
+      <p id="intro"></p>
+    </div>
+    <div>
+      <h3>Task 2: Advanced Tagged Template</h3>
+      <p id="task2"></p>
+    </div>
+    <div>
+      <h3>Task 3: Multiline Tagged Template</h3>
+      <p id="multiline"></p>
+    </div>
+    <div>
+      <h3>Task 4: Implementing Debounce Function</h3>
+      <input
+        type="text"
+        name=""
+        id="search-input"
+        placeholder="type here for debounce"
+      />
+      <p>Debounce : <span id="debounce"></span></p>
+      <p>Throttle : <span id="throttledInput"></span></p>
+    </div>
+    <div>
+      <h3>Task 5: Implementing Throttle Functiong</h3>
+      <h4>Scroll some to check</h4>
+      <div id="throttled"></div>
+    </div>
+    <div>
+      <h3>Task 6: Currying Function Implementation</h3>
+      <p>Result: <span id="currying"></span></p>
+      <p>Extended Result: <span id="curryingExt"></span></p>
+    </div>
+  </body>
+</html>
