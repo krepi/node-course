@@ -1,5 +1,7 @@
-Homework 7
-Task 1: Implement promiseAll Function
+# Homework 7
+
+### **Task 1: Implement promiseAll Function**
+
 Your task is to implement a function called promiseAll that mimics the behavior of Promise.all(). The function should
 accept an array of promises and return a single promise that resolves to an array of resolved values or rejects with the
 reason of the first rejected promise.
@@ -29,7 +31,9 @@ promiseAll(promises)
 ```
 
 ​
-Task 2: Implement promiseAllSettled Function
+
+### **Task 2: Implement promiseAllSettled Function**
+
 Your task is to implement a function called promiseAllSettled that mimics the behavior of Promise.allSettled(). The
 function should accept an array of promises and return a promise that resolves to an array of objects representing the
 settlement of each promise.
@@ -59,7 +63,9 @@ promiseAllSettled(promises)
 ```
 
 ​
-Task 3: Implement Chaining of Promises as a Separate Function
+
+### **Task 3: Implement Chaining of Promises as a Separate Function**
+
 Your task is to implement a function called chainPromises that facilitates chaining of promises. The function should
 accept an array of functions that return promises and execute them sequentially.
 Instructions
@@ -96,7 +102,9 @@ chainPromises(functionsArray)
 ```
 
 ​
-Task 4: Implement promisify Function
+
+### **Task 4: Implement promisify Function**
+
 Your task is to implement a function called promisify that converts a callback-style function into a function that
 returns a promise.
 Instructions
