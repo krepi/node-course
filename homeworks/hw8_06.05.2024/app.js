@@ -17,3 +17,14 @@ const sportsMagazine = new SportsMagazine("Sports Illustrated", "August 2021", 4
 
 console.log(sciFiBook.getDescription())
 
+const firstCart = new Cart(user);
+firstCart.addItem(sciFiBook);
+firstCart.addItem(adventureBook);
+firstCart.addItem(sportsMagazine);
+console.log(firstCart.showItems());
+firstCart.clearCart()
+
+
+const firstOrder = Order.createOrder(firstCart)
+
+// console.log(`Order Id: ${firstOrder.getId()}, Summary: ${firstOrder.totalPrice}`)
