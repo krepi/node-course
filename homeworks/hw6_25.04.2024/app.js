@@ -13,12 +13,9 @@
 
 const translations = {
     en: {
-        greet: "Hello",
-        intro: "Welcome to our website",
-    },
-    fr: {
-        greet: "Bonjour",
-        intro: "Bienvenue sur notre site web",
+        greet: "Hello", intro: "Welcome to our website",
+    }, fr: {
+        greet: "Bonjour", intro: "Bienvenue sur notre site web",
     },
 };
 const language = "fr";
@@ -30,9 +27,7 @@ const language = "fr";
  */
 function localize(...template) {
     return template.reduce((acc, key) => {
-        return translations[language].hasOwnProperty(key)
-            ? translations[language][key]
-            : "";
+        return translations[language].hasOwnProperty(key) ? translations[language][key] : "";
     }, "");
 }
 
@@ -195,15 +190,14 @@ function multiply(a, b, c) {
  * @param {number} arity Number of arguments the function expects.
  * @returns {Function} Curried function.
  */
-const curry = (func, arity = func.length) =>
-    function curried(...args) {
-        if (arity === args.length) {
-            return func(...args);
-        } else {
-            let result = (...newArgs) => curried(...args, ...newArgs);
-            return result;
-        }
-    };
+const curry = (func, arity = func.length) => function curried(...args) {
+    if (arity === args.length) {
+        return func(...args);
+    } else {
+        let result = (...newArgs) => curried(...args, ...newArgs);
+        return result;
+    }
+};
 
 //Task 6.a: Currying Function Implementation (extended)
 
@@ -213,19 +207,16 @@ const curry = (func, arity = func.length) =>
  * @param {number} arity Number of arguments the function expects.
  * @returns {Function} Curried function.
  */
-const curryExt = (func, arity = func.length) =>
-    function curried(...args) {
-        if (arity === args.length && !args.includes("_")) {
-            return func(...args);
-        } else {
-            return (...newArgs) => {
-                const filledArgs = args.map((arg) =>
-                    arg === "_" ? newArgs.shift() || "_" : arg
-                );
-                return curried(...filledArgs, ...newArgs);
-            };
-        }
-    };
+const curryExt = (func, arity = func.length) => function curried(...args) {
+    if (arity === args.length && !args.includes("_")) {
+        return func(...args);
+    } else {
+        return (...newArgs) => {
+            const filledArgs = args.map((arg) => arg === "_" ? newArgs.shift() || "_" : arg);
+            return curried(...filledArgs, ...newArgs);
+        };
+    }
+};
 
 /**
  * Function handling code execution after the entire document content has loaded.
@@ -239,8 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const localizedGreeting = localize`${greeting}`;
     const localizedIntroduction = localize`${introduction}`;
     const keywords = ["JavaScript", "template", "tagged"];
-    const template =
-        "Learn ${0} tagged templates to create custom ${1} literals for ${2} manipulation.";
+    const template = "Learn ${0} tagged templates to create custom ${1} literals for ${2} manipulation.";
     const code = multiline`
       function add(a, b) {
         return a + b;
@@ -254,10 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("greet").innerText = localizedGreeting;
     document.getElementById("intro").innerText = localizedIntroduction;
-    document.getElementById("task2").innerHTML = highlightKeywords(
-        template,
-        keywords
-    );
+    document.getElementById("task2").innerHTML = highlightKeywords(template, keywords);
     document.getElementById("multiline").innerText = code;
     document.getElementById("search-input").addEventListener("input", (event) => {
         debouncedSearchHandler(event.target.value);
