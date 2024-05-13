@@ -127,9 +127,7 @@ The order process outlines how a user can purchase books and magazines through t
 - Ensure that each book or magazine has sufficient stock before adding it to the cart.
 - Handle errors such as "empty cart" or "item not available" appropriately to guide the user.
 
-## Usage Example
 
-// Example code showcasing how to use the described process.
 
 ## File Structure
 
