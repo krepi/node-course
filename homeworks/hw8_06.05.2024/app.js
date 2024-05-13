@@ -12,7 +12,7 @@ const user = new User("John Doe", "john@doe.com", "1");
 const sciFiBook = new SciFiBook("Dune", "Frank Herbert", 9.99, true, "Dune Universe");
 const adventureBook = new AdventureBook("The Hobbit", "J.R.R. Tolkien", 12.99, true, "Middle Earth");
 const sportsMagazine = new SportsMagazine("Sports Illustrated", "August 2021", 4.99, true, "Football");
-const fashionMagazine = new FashionMagazine("Vogue", "August 2021", 5.99, true, "Spring Collections");
+const fashionMagazine = new FashionMagazine("Vogue", "April 2024", 5.99, true, "Spring Collections");
 
 console.log(sciFiBook.getDescription())
 
