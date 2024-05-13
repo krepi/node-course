@@ -29,7 +29,7 @@ class AdventureBook extends Book {
     }
 
     getDescription() {
-        return `${this.title}, author; ${this.author}, price: $${this.price}`;
+        return `${this.title}, author; ${this.author},setting: ${this.setting}, price: $${this.price}` ;
     }
 }
 
