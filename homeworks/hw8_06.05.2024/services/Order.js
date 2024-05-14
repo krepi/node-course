@@ -9,11 +9,11 @@ class Order {
      * @param {Cart} cart - The cart from which to create an order. The cart should have items, a user, and be able to calculate total.
      */
     constructor(cart) {
-        this.orderId = uuidv4(); // Universally unique identifier for the order
-        this.user = cart.user; // User who created the order
-        this.items = cart.items; // Items from the cart
-        this.totalPrice = cart.calculateTotal(); // Total price of the cart
-        this.status = 'Pending'; // Initial status of the order
+        this.orderId = uuidv4();
+        this.user = cart.user;
+        this.items = cart.items;
+        this.totalPrice = cart.calculateTotal();
+        this.status = 'Pending';
     }
 
     /**
@@ -44,6 +44,10 @@ class Order {
     updateStatus(newStatus) {
         this.status = newStatus;
         console.log(`Order status updated to ${newStatus}`);
+    }
+
+    orderSummary() {
+        return `Order summary: User: ${this.user.name}, Order Id - ${this.orderId}, Total: ${this.totalPrice} , Items: ${this.items.length}, Status: ${this.status}`;
     }
 }
 

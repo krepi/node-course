@@ -1,6 +1,6 @@
-import { SciFiBook, AdventureBook } from './publications/Books.js';
-import { SportsMagazine, FashionMagazine } from './publications/Magazines.js';
-import  Customer  from './users/Customer.js';
+import {SciFiBook, AdventureBook} from './publications/Books.js';
+import {SportsMagazine, FashionMagazine} from './publications/Magazines.js';
+import Customer from './users/Customer.js';
 import Admin from "./users/Admin.js";
 
 
@@ -31,6 +31,7 @@ if (order) {
     console.log(`Order ID: ${order.getId()}, Total: $${order.totalPrice}`);
 
     order.updateStatus("Paid");
+    console.log(order.orderSummary());
 }
 
 // Create Admin
