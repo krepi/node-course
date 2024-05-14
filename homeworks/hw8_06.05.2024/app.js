@@ -29,7 +29,6 @@ console.log(customer.cart.cartInfo());
 const order = customer.placeOrder();
 if (order) {
     console.log(`Order ID: ${order.getId()}, Total: $${order.totalPrice}`);
-
     order.updateStatus("Paid");
     console.log(order.orderSummary());
 }

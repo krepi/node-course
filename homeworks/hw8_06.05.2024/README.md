@@ -229,12 +229,15 @@ project-root
 ## Usage Example
 
 ```javascript
-const user = new User("John Doe", "john@doe.com", "1");
+const customer = new Customer("John Doe", "john@doe.com", "1");
 const sciFiBook = new SciFiBook("Dune", "Frank Herbert", 9.99, true, "Dune Universe");
-const firstCart = new Cart(user);
-firstCart.addItem(sciFiBook);
-const firstOrder = Order.createOrder(firstCart);
-console.log(`Order Id: ${firstOrder.getId()}, Total: ${firstOrder.totalPrice}`);
+customer.cart.addItem(sciFiBook);
+const order = customer.placeOrder();
+if (order) {
+    console.log(`Order ID: ${order.getId()}, Total: $${order.totalPrice}`);
+    order.updateStatus("Paid");
+    console.log(order.orderSummary());
+}
 ```
 
 ## Getting Started
