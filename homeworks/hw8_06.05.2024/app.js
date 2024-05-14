@@ -1,32 +1,44 @@
-import User from './users/User.js';
-import Cart from './services/Cart.js';
-import Order from './services/Order.js';
-
-import {SciFiBook, AdventureBook} from './publications/Books.js';
-import {SportsMagazine, FashionMagazine} from './publications/Magazines.js';
+import { SciFiBook, AdventureBook } from './publications/Books.js';
+import { SportsMagazine, FashionMagazine } from './publications/Magazines.js';
+import  Customer  from './users/Customer.js';
+import Admin from "./users/Admin.js";
 
 
-const user = new User("John Doe", "john@doe.com", "1");
-
-
+// Create products
 const sciFiBook = new SciFiBook("Dune", "Frank Herbert", 9.99, true, "Dune Universe");
 const adventureBook = new AdventureBook("The Hobbit", "J.R.R. Tolkien", 12.99, true, "Middle Earth");
 const sportsMagazine = new SportsMagazine("Sports Illustrated", "August 2021", 4.99, true, "Football");
 const fashionMagazine = new FashionMagazine("Vogue", "April 2024", 5.99, true, "Spring Collections");
 
-console.log(sciFiBook.getDescription())
+// Create customer
+const customer = new Customer("John Doe", "john@doe.com", "1");
 
-const firstCart = new Cart(user);
-firstCart.addItem(sciFiBook);
-firstCart.addItem(adventureBook);
-firstCart.addItem(sportsMagazine);
-firstCart.addItem(fashionMagazine);
-console.log(firstCart.showItems());
-console.log(firstCart.cartInfo());
+// Add to cart
+customer.cart.addItem(sciFiBook);
+customer.cart.addItem(adventureBook);
+customer.cart.addItem(sportsMagazine);
+customer.cart.addItem(fashionMagazine);
 
-// firstCart.clearCart()
+// Display items cart and info
+console.log(customer.cart.showItems());
 
 
-const firstOrder = Order.createOrder(firstCart)
+console.log(customer.cart.cartInfo());
 
-console.log(`Order Id: ${firstOrder.getId()}, Summary: ${firstOrder.totalPrice}`)
+// Order
+const order = customer.placeOrder();
+if (order) {
+    console.log(`Order ID: ${order.getId()}, Total: $${order.totalPrice}`);
+
+    order.updateStatus("Paid");
+}
+
+// Create Admin
+const admin = new Admin("Alice Administrator", "alice@example.com", "2");
+
+
+admin.manageUsers();
+admin.deleteUser(customer);
+
+
+

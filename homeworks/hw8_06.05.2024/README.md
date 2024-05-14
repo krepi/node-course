@@ -1,4 +1,5 @@
 # Project Documentation
+
 ## Table of Contents
 1. [Overview](#overview)
 2. [Classes and Relationships](#classes-and-relationships)
@@ -8,23 +9,21 @@
     - [Cart](#cart)
     - [Order](#order)
     - [User](#user)
+    - [Customer](#customer)
+    - [Admin](#admin)
 3. [Order Process](#order-process)
 4. [Usage Example](#usage-example)
 5. [File Structure](#file-structure)
 6. [Directory Structure](#directory-structure)
 7. [Getting Started](#getting-started)
 
+
 ## Overview
-This documentation provides a detailed look at the classes within the project, their methods, and the relationships among them. This project consists of several classes that model publications like books and magazines, along with a system to manage a shopping cart and orders, organized in a structured folder layout.
+This documentation provides a detailed look at the classes within the project, their methods, and how they interact. This project models publications like books and magazines, incorporates a shopping cart and order system, and organizes these functionalities within a structured folder layout.
 
 ## Classes and Relationships
 
 This section details the classes, their methods, and how they relate to one another. This project uses inheritance and polymorphism extensively to promote code reusability and scalability.
-
-Inheritance is used to extend base classes, allowing derived classes to inherit and possibly override or extend their behaviors. For instance, `Book` extends `Publication`, inheriting its properties and methods while adding its own specific features.
-
-Polymorphism is employed to handle different types of objects through the same interface, such as calling `getDescription()` on any publication type, which returns a formatted string specific to its subclass.
-
 
 ### `Publication` (located in `publications/Publication.js`)
 The base class for all publication types.
@@ -52,17 +51,22 @@ Represents an adventure book.
     - `getDescription()`: Returns a description including the title, author, setting, and price.
 
 ### `Magazine` (extends `Publication`, located in `publications/Magazines.js`)
-Represents a magazine, extending `Publication` to include issue-specific properties. This class showcases inheritance by utilizing the basic structure of a publication and adding unique attributes and behaviors like handling issue numbers. Magazines often cover a variety of topics, and different subclasses of `Magazine` may add further specific features, such as `SportsMagazine` which includes sports types, or `FashionMagazine` which focuses on current fashion trends.
-
+Represents a magazine, extending `Publication` to include issue-specific properties.
 - **Constructor**: Adds `issueNumber` to the base constructor.
+- **Method**:
+    - `getDescription()`: Returns a description including the issue number and price.
 
 #### `SportsMagazine` (extends `Magazine`, located in `publications/Magazines.js`)
 Represents a sports magazine.
 - **Constructor**: Adds `sportsType` to the magazine constructor.
+- **Method**:
+    - `getDescription()`: Returns a description including the issue number, sports type, and price.
 
 #### `FashionMagazine` (extends `Magazine`, located in `publications/Magazines.js`)
 Represents a fashion magazine.
 - **Constructor**: Adds `trends` to the magazine constructor.
+- **Method**:
+    - `getDescription()`: Returns a description including the issue number, trends, and price.
 
 ### `Cart` (located in `services/Cart.js`)
 A shopping cart for managing user's purchases.
@@ -85,6 +89,19 @@ Represents an order.
 ### `User` (located in `users/User.js`)
 Represents a user.
 - **Constructor**: Accepts `name`, `email`, and `userId`.
+
+### `Customer` (extends `User`, located in `users/User.js`)
+Represents a customer capable of placing orders.
+- **Constructor**: Inherits `name`, `email`, and `userId` from `User` and initializes a new `Cart`.
+- **Method**:
+    - `placeOrder()`: Creates an order from the cart's items and clears the cart.
+
+### `Admin` (extends `User`, located in `users/User.js`)
+Represents an administrator with enhanced privileges.
+- **Constructor**: Inherits `name`, `email`, and `userId` from `User` and sets admin privileges.
+- **Methods**:
+    - `manageUsers()`: Provides functionality to manage other users.
+    - `deleteUser(user)`: Deletes a user from the system.
 
 ## Order Process
 
@@ -123,6 +140,25 @@ The order process outlines how a user can purchase books and magazines through t
     console.log(firstCart.showItems());
     ```
 
+## File Structure
+
+- `/publications`
+    - `Publication.js` - Contains `Publication`.
+    - `Books.js` - Contains `Book`, `SciFiBook`, `AdventureBook`.
+    - `Magazines.js` - Contains `Magazine`, `SportsMagazine`, `FashionMagazine`.
+- `/services`
+    - `Cart.js` - Contains `Cart`.
+    - `Order.js` - Contains `Order`.
+- `/users`
+    - `User.js` - Contains `User`. 
+    - `Customer.js` - Contains `Customer`.
+    - `Admin.js` - Contains `Admin`.
+- `app.js` - Main application script that utilizes all of the above.
+
+## Directory Structure
+
+
+
 ### Notes
 - Ensure that each book or magazine has sufficient stock before adding it to the cart.
 - Handle errors such as "empty cart" or "item not available" appropriately to guide the user.
@@ -158,11 +194,12 @@ project-root
 │ │ Order.js
 │
 └───users
-│ User.js
+│ | User.js
+│ | Admin.js
+│ | Customer.js
 ```
 ## Usage Example
 ```javascript
-// Sample usage in app.js
 const user = new User("John Doe", "john@doe.com", "1");
 const sciFiBook = new SciFiBook("Dune", "Frank Herbert", 9.99, true, "Dune Universe");
 const firstCart = new Cart(user);

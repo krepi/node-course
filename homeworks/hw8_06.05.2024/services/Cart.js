@@ -6,10 +6,12 @@ class Cart {
 
     addItem(item) {
         this.items.push(item);
+        console.log(`Added ${item.getDescription()} to the cart.`);
     }
 
     removeItem(itemId) {
         this.items = this.items.filter(item => item.id !== itemId);
+        console.log(`Item with id ${itemId} removed from the cart.`);
     }
 
     calculateTotal() {
@@ -18,14 +20,17 @@ class Cart {
 
     clearCart() {
         this.items = [];
-        return `Cart has been cleared`;
+        console.log("Cart has been cleared.");
     }
+
     showItems() {
         return this.items.map(item => `${item.getDescription()}`).join('\n');
     }
-    cartInfo(){
-        return `Cart details: Customer number: ${this.user.userId}, Item amount: ${this.items.length} items, Total: ${this.calculateTotal()}`;
+
+    cartInfo() {
+        return `Cart details: Customer ID: ${this.user.userId}, Item count: ${this.items.length}, Total: $${this.calculateTotal()}`;
     }
 }
+
 
 export default Cart;
