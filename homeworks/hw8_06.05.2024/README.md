@@ -90,13 +90,13 @@ Represents an order.
 Represents a user.
 - **Constructor**: Accepts `name`, `email`, and `userId`.
 
-### `Customer` (extends `User`, located in `users/User.js`)
+### `Customer` (extends `User`, located in `users/Customer.js`)
 Represents a customer capable of placing orders.
 - **Constructor**: Inherits `name`, `email`, and `userId` from `User` and initializes a new `Cart`.
 - **Method**:
     - `placeOrder()`: Creates an order from the cart's items and clears the cart.
 
-### `Admin` (extends `User`, located in `users/User.js`)
+### `Admin` (extends `User`, located in `users/Admin.js`)
 Represents an administrator with enhanced privileges.
 - **Constructor**: Inherits `name`, `email`, and `userId` from `User` and sets admin privileges.
 - **Methods**:
