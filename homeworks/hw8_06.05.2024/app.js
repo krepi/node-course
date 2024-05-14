@@ -22,6 +22,7 @@ firstCart.addItem(adventureBook);
 firstCart.addItem(sportsMagazine);
 firstCart.addItem(fashionMagazine);
 console.log(firstCart.showItems());
+console.log(firstCart.cartInfo());
 
 // firstCart.clearCart()
 
