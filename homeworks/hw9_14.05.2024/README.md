@@ -4,14 +4,14 @@
 
 - [Overview](#overview)
 - [Classes and Relationships](#classes-and-relationships)
-    - [SinglyLinkedList](#singlylinkedlist)
-    - [Node](#node)
-    - [Stack](#stack)
-    - [MinMaxStack](#minmaxstack)
-    - [Queue](#queue)
-    - [PriorityQueue](#priorityqueue)
-    - [BinarySearchTree](#binarysearchtree)
-    - [Graph](#graph)
+    - [SinglyLinkedList](#singlylinkedlist-located-in-structuressinglylinkedlistjs)
+    - [Node](#node-used-within-singlylinkedlist-and-binarysearchtree)
+    - [Stack](#stack-located-in-structuresstackjs)
+    - [MinMaxStack](#minmaxstack-located-in-structuresstackjs)
+    - [Queue](#queue-located-in-structuresqueuejs)
+    - [PriorityQueue](#priorityqueue-located-in-structuresqueuejs)
+    - [BinarySearchTree](#binarysearchtree-located-in-structuresbinarysearchtreejs)
+    - [Graph](#graph-located-in-structuresgraphjs)
 - [Usage Example](#usage-example)
 - [File Structure](#file-structure)
 - [Directory Structure](#directory-structure)
@@ -30,7 +30,7 @@ structures to demonstrate different algorithms and their applications.
 
 ### SinglyLinkedList (located in `structures/SinglyLinkedList.js`)
 
-A class representing a singly linked list.
+A class representing a singly linked list. This class is used in the implementation of the `Stack` and `Queue` classes.
 
 #### Methods:
 
@@ -52,11 +52,11 @@ A class representing a node in a data structure.
 
 #### Constructor:
 
-Accepts value and initializes left and right for tree nodes or next for linked list nodes.
+- Accepts value and initializes left and right for tree nodes or next for linked list nodes.
 
 ### Stack (located in `structures/Stack.js`)
 
-A class representing a stack data structure.
+A class representing a stack data structure. This class uses `SinglyLinkedList` to manage its elements.
 
 #### Methods:
 
@@ -67,7 +67,8 @@ A class representing a stack data structure.
 
 ### MinMaxStack (located in `structures/Stack.js`)
 
-A class representing a stack with additional tracking for minimum and maximum values.
+A class representing a stack with additional tracking for minimum and maximum values. This class uses `Stack` to manage
+its elements.
 
 #### Methods:
 
@@ -80,7 +81,7 @@ A class representing a stack with additional tracking for minimum and maximum va
 
 ### Queue (located in `structures/Queue.js`)
 
-A class representing a queue data structure.
+A class representing a queue data structure. This class uses `SinglyLinkedList` to manage its elements.
 
 #### Methods:
 
@@ -101,7 +102,7 @@ A class representing a priority queue data structure.
 
 ### BinarySearchTree (located in `structures/BinarySearchTree.js`)
 
-A class representing a binary search tree.
+A class representing a binary search tree. This class uses `Queue` for breadth-first search (BFS) operations.
 
 #### Methods:
 
@@ -110,22 +111,24 @@ A class representing a binary search tree.
 - `isBST(node, min, max)`: Checks if the tree is a valid binary search tree.
 - `findIterative(value)`: Finds a value iteratively.
 - `find(value)`: Finds a value recursively.
-- `BFS()`: Performs a breadth-first search.
+- `BFS()`: Performs a breadth-first search using a `Queue`.
 - `DFSPreOrder()`: Performs a depth-first search in pre-order.
 - `DFSInOrder()`: Performs a depth-first search in in-order.
 - `DFSPostOrder()`: Performs a depth-first search in post-order.
 
 ### Graph (located in `structures/Graph.js`)
 
-A class representing a graph.
+A class representing a graph. This class uses `Queue` for breadth-first search (BFS) operations and `PriorityQueue` for
+Dijkstra's algorithm.
 
 #### Methods:
 
 - `addVertex(vertex)`: Adds a vertex to the graph.
 - `addEdge(vertex1, vertex2, weight)`: Adds an edge between two vertices with a given weight.
 - `DFS(start)`: Performs a depth-first search starting from a given vertex.
-- `BFS(start)`: Performs a breadth-first search starting from a given vertex.
-- `dijkstra(start, finish)`: Finds the shortest path between two vertices using Dijkstra's algorithm.
+- `BFS(start)`: Performs a breadth-first search starting from a given vertex using a `Queue`.
+- `dijkstra(start, finish)`: Finds the shortest path between two vertices using Dijkstra's algorithm and
+  a `PriorityQueue`.
 
 ## Usage Example
 
