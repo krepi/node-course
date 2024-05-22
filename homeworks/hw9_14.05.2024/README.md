@@ -44,7 +44,7 @@ A class representing a singly linked list. This class is used in the implementat
 - `remove(index)`: Removes a node at a specific index.
 - `reverse()`: Reverses the list.
 - `listValuesToArray()`: Converts the list values to an array.
-- `hasCycle()`: Detects if the linked list has a cycle.
+- `hasCycle()`: Detects if the linked list has a cycle using Floyd's Cycle Detection Algorithm.
 
 ### Node (used within SinglyLinkedList and BinarySearchTree)
 
