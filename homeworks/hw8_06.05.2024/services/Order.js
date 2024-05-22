@@ -17,19 +17,6 @@ class Order {
     }
 
     /**
-     * Creates a new Order if the cart is not empty.
-     * @param {Cart} cart - The cart from which to create an order.
-     * @returns {Order|Object} Returns the Order instance or an error object if the cart is empty.
-     */
-    static createOrder(cart) {
-        if (cart.items.length === 0) {
-            console.log("Don't make order with empty cart");
-            return {error: "Cannot create an order with an empty cart."};
-        }
-        return new Order(cart);
-    }
-
-    /**
      * Gets the order ID.
      * @returns {string} The order's unique identifier.
      */
@@ -48,6 +35,19 @@ class Order {
 
     orderSummary() {
         return `Order summary: User: ${this.user.name}, Order Id - ${this.orderId}, Total: ${this.totalPrice} , Items: ${this.items.length}, Status: ${this.status}`;
+    }
+
+    /**
+     * Creates a new Order if the cart is not empty.
+     * @param {Cart} cart - The cart from which to create an order.
+     * @returns {Order|Object} Returns the Order instance or an error object if the cart is empty.
+     */
+    static createOrder(cart) {
+        if (cart.items.length === 0) {
+            console.log("Don't make order with empty cart");
+            return {error: "Cannot create an order with an empty cart."};
+        }
+        return new Order(cart);
     }
 }
 
