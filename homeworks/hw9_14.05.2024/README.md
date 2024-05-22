@@ -253,6 +253,7 @@ Clone the repository:
 
 ```
 git clone https://github.com/krepi/node-course/tree/main/homeworks/hw9_14.05.2024
+cd hw9_14.05.2024
 ```
 
 #### Running the application:
