@@ -34,17 +34,17 @@ A class representing a singly linked list. This class is used in the implementat
 
 #### Methods:
 
-- `push(val)`: Adds an item to the end of the list.
-- `pop()`: Removes and returns the last item from the list.
-- `shift()`: Removes and returns the first item from the list.
-- `unshift(val)`: Adds an item to the beginning of the list.
-- `get(index)`: Retrieves a node by its index.
-- `set(index, value)`: Sets the value of a node at a specific index.
-- `insert(index, value)`: Inserts a node at a specific index.
-- `remove(index)`: Removes a node at a specific index.
-- `reverse()`: Reverses the list.
-- `listValuesToArray()`: Converts the list values to an array.
-- `hasCycle()`: Detects if the linked list has a cycle using Floyd's Cycle Detection Algorithm.
+- `push(val)`: Adds an item to the end of the list. **O(1)**
+- `pop()`: Removes and returns the last item from the list. **O(n)**
+- `shift()`: Removes and returns the first item from the list. **O(1)**
+- `unshift(val)`: Adds an item to the beginning of the list. **O(1)**
+- `get(index)`: Retrieves a node by its index. **O(n)**
+- `set(index, value)`: Sets the value of a node at a specific index. **O(n)**
+- `insert(index, value)`: Inserts a node at a specific index. **O(n)**
+- `remove(index)`: Removes a node at a specific index. **O(n)**
+- `reverse()`: Reverses the list. **O(n)**
+- `listValuesToArray()`: Converts the list values to an array. **O(n)**
+- `hasCycle()`: Detects if the linked list has a cycle using Floyd's Cycle Detection Algorithm. **O(n)**
 
 ### Node (used within SinglyLinkedList and BinarySearchTree)
 
@@ -52,7 +52,7 @@ A class representing a node in a data structure.
 
 #### Constructor:
 
-- Accepts value and initializes left and right for tree nodes or next for linked list nodes.
+- Accepts value and initializes left and right for tree nodes or next for linked list nodes. **O(1)**
 
 ### Stack (located in `structures/Stack.js`)
 
@@ -60,10 +60,10 @@ A class representing a stack data structure. This class uses `SinglyLinkedList` 
 
 #### Methods:
 
-- `push(val)`: Pushes a value onto the stack.
-- `pop()`: Pops a value off the stack.
-- `peek()`: Peeks at the top value of the stack.
-- `isEmpty()`: Checks if the stack is empty.
+- `push(val)`: Pushes a value onto the stack. **O(1)**
+- `pop()`: Pops a value off the stack. **O(1)**
+- `peek()`: Peeks at the top value of the stack. **O(1)**
+- `isEmpty()`: Checks if the stack is empty. **O(1)**
 
 ### MinMaxStack (located in `structures/Stack.js`)
 
@@ -72,12 +72,12 @@ its elements.
 
 #### Methods:
 
-- `push(val)`: Pushes a value onto the stack and updates min/max stacks.
-- `pop()`: Pops a value off the stack and updates min/max stacks.
-- `peek()`: Peeks at the top value of the stack.
-- `getMin()`: Gets the minimum value in the stack.
-- `getMax()`: Gets the maximum value in the stack.
-- `isEmpty()`: Checks if the stack is empty.
+- `push(val)`: Pushes a value onto the stack and updates min/max stacks. **O(1)**
+- `pop()`: Pops a value off the stack and updates min/max stacks. **O(1)**
+- `peek()`: Peeks at the top value of the stack. **O(1)**
+- `getMin()`: Gets the minimum value in the stack. **O(1)**
+- `getMax()`: Gets the maximum value in the stack. **O(1)**
+- `isEmpty()`: Checks if the stack is empty. **O(1)**
 
 ### Queue (located in `structures/Queue.js`)
 
@@ -85,10 +85,10 @@ A class representing a queue data structure. This class uses `SinglyLinkedList` 
 
 #### Methods:
 
-- `enqueue(val)`: Adds an element to the end of the queue.
-- `dequeue()`: Removes and returns the element from the front of the queue.
-- `peek()`: Gets the element at the front of the queue without removing it.
-- `isEmpty()`: Checks if the queue is empty.
+- `enqueue(val)`: Adds an element to the end of the queue. **O(1)**
+- `dequeue()`: Removes and returns the element from the front of the queue. **O(1)**
+- `peek()`: Gets the element at the front of the queue without removing it. **O(1)**
+- `isEmpty()`: Checks if the queue is empty. **O(1)**
 
 ### PriorityQueue (located in `structures/Queue.js`)
 
@@ -96,9 +96,9 @@ A class representing a priority queue data structure.
 
 #### Methods:
 
-- `enqueue(val, priority)`: Adds an element with a given priority.
-- `dequeue()`: Removes and returns the highest priority element.
-- `isEmpty()`: Checks if the priority queue is empty.
+- `enqueue(val, priority)`: Adds an element with a given priority. **O(log n)**
+- `dequeue()`: Removes and returns the highest priority element. **O(log n)**
+- `isEmpty()`: Checks if the priority queue is empty. **O(1)**
 
 ### BinarySearchTree (located in `structures/BinarySearchTree.js`)
 
@@ -106,15 +106,16 @@ A class representing a binary search tree. This class uses `Queue` for breadth-f
 
 #### Methods:
 
-- `insertIterative(value)`: Inserts a value into the tree iteratively.
-- `insert(value)`: Inserts a value into the tree recursively.
-- `isBST(node, min, max)`: Checks if the tree is a valid binary search tree.
-- `findIterative(value)`: Finds a value iteratively.
-- `find(value)`: Finds a value recursively.
-- `BFS()`: Performs a breadth-first search using a `Queue`.
-- `DFSPreOrder()`: Performs a depth-first search in pre-order.
-- `DFSInOrder()`: Performs a depth-first search in in-order.
-- `DFSPostOrder()`: Performs a depth-first search in post-order.
+- `insertIterative(value)`: Inserts a value into the tree iteratively. **O(log n)** on average, **O(n)** in the worst
+  case.
+- `insert(value)`: Inserts a value into the tree recursively. **O(log n)** on average, **O(n)** in the worst case.
+- `isBST(node, min, max)`: Checks if the tree is a valid binary search tree. **O(n)**
+- `findIterative(value)`: Finds a value iteratively. **O(log n)** on average, **O(n)** in the worst case.
+- `find(value)`: Finds a value recursively. **O(log n)** on average, **O(n)** in the worst case.
+- `BFS()`: Performs a breadth-first search using a `Queue`. **O(n)**
+- `DFSPreOrder()`: Performs a depth-first search in pre-order. **O(n)**
+- `DFSInOrder()`: Performs a depth-first search in in-order. **O(n)**
+- `DFSPostOrder()`: Performs a depth-first search in post-order. **O(n)**
 
 ### Graph (located in `structures/Graph.js`)
 
@@ -123,12 +124,14 @@ Dijkstra's algorithm.
 
 #### Methods:
 
-- `addVertex(vertex)`: Adds a vertex to the graph.
-- `addEdge(vertex1, vertex2, weight)`: Adds an edge between two vertices with a given weight.
-- `DFS(start)`: Performs a depth-first search starting from a given vertex.
-- `BFS(start)`: Performs a breadth-first search starting from a given vertex using a `Queue`.
+- `addVertex(vertex)`: Adds a vertex to the graph. **O(1)**
+- `addEdge(vertex1, vertex2, weight)`: Adds an edge between two vertices with a given weight. **O(1)**
+- `DFS(start)`: Performs a depth-first search starting from a given vertex. **O(V + E)** where V is the number of
+  vertices and E is the number of edges.
+- `BFS(start)`: Performs a breadth-first search starting from a given vertex using a `Queue`. **O(V + E)** where V is
+  the number of vertices and E is the number of edges.
 - `dijkstra(start, finish)`: Finds the shortest path between two vertices using Dijkstra's algorithm and
-  a `PriorityQueue`.
+  a `PriorityQueue`. **O((V + E) log V)** where V is the number of vertices and E is the number of edges.
 
 ## Usage Example
 
