@@ -126,6 +126,9 @@ Dijkstra's algorithm.
 
 - `addVertex(vertex)`: Adds a vertex to the graph. **O(1)**
 - `addEdge(vertex1, vertex2, weight)`: Adds an edge between two vertices with a given weight. **O(1)**
+- `removeVertex(vertex)`: Removes a vertex and all associated edges from the graph. **O(V + E)** where V is the number
+  of vertices and E is the number of edges.
+- `removeEdge(vertex1, vertex2)`: Removes an edge between two vertices. **O(E)** where E is the number of edges.
 - `DFS(start)`: Performs a depth-first search starting from a given vertex. **O(V + E)** where V is the number of
   vertices and E is the number of edges.
 - `BFS(start)`: Performs a breadth-first search starting from a given vertex using a `Queue`. **O(V + E)** where V is

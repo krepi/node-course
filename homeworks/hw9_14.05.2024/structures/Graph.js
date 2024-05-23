@@ -30,6 +30,40 @@ class Graph {
     }
 
     /**
+     * Removes a vertex and all associated edges from the graph.
+     * @param {string} vertex - The name of the vertex to remove.
+     */
+    removeVertex(vertex) {
+        if (!this.adjacencyList[vertex]) return;
+
+        while (this.adjacencyList[vertex].length) {
+            const connectedVertex = this.adjacencyList[vertex].pop().node;
+            this.removeEdge(connectedVertex, vertex);
+        }
+
+        delete this.adjacencyList[vertex];
+    }
+
+    /**
+     * Removes an edge between two vertices.
+     * @param {string} vertex1 - The first vertex.
+     * @param {string} vertex2 - The second vertex.
+     */
+    removeEdge(vertex1, vertex2) {
+        if (this.adjacencyList[vertex1]) {
+            this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+                v => v.node !== vertex2
+            );
+        }
+
+        if (this.adjacencyList[vertex2]) {
+            this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
+                v => v.node !== vertex1
+            );
+        }
+    }
+
+    /**
      * Perform a depth-first search (DFS) starting from a given vertex.
      * @param {string} start - The starting vertex.
      * @return {Array} - The vertices visited in DFS order.
