@@ -163,3 +163,9 @@ To start the application, run:
 ```
 node app.js
 ```
+
+### Note
+
+All methods are documented using JSDoc comments to explain their functionality, parameters, and return values.
+The notation O(1), O(n), etc., denotes the time complexity of each method, providing insights into their performance
+characteristics.
