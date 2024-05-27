@@ -92,7 +92,7 @@ A class representing a node in a singly linked list.
 ## Usage Example
 
 ```javascript
-const SinglyLinkedList = require('./structures/SinglyLinkedList');
+
 const CustomHashTable = require('./structures/CustomHashTable');
 
 /**
