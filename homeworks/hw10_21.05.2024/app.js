@@ -9,9 +9,9 @@ function demonstrateHashTable() {
     hashTable.insert('age', 44);
     hashTable.insert('city', 'Olsztyn');
 
-    console.log(hashTable.get('name')); // Output: Alice
-    console.log(hashTable.get('age')); // Output: 30
-    console.log(hashTable.get('city')); // Output: Wonderland
+    console.log(hashTable.get('name')); // Output: Przemek
+    console.log(hashTable.get('age')); // Output: 44
+    console.log(hashTable.get('city')); // Output: Olsztyn
 
     hashTable.delete('age');
     console.log(hashTable.get('age')); // Output: undefined
