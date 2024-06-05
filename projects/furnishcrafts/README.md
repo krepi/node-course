@@ -1,5 +1,30 @@
 # Custom Furniture Manufacturing System
+## Table of Contents
 
+- [Project Description](#project-description)
+- [Functional Requirements](#functional-requirements)
+    - [User Registration and Authentication](#user-registration-and-authentication)
+    - [Order Placement](#order-placement)
+    - [Cost Estimation](#cost-estimation)
+    - [Order Tracking](#order-tracking)
+    - [Inventory Management](#inventory-management)
+    - [Admin Panel](#admin-panel)
+- [Non-Functional Requirements](#non-functional-requirements)
+    - [Performance](#performance)
+    - [Scalability](#scalability)
+    - [Security](#security)
+    - [Reliability](#reliability)
+    - [Usability](#usability)
+- [Technologies and Their Applications](#technologies-and-their-applications)
+    - [Frontend](#frontend)
+    - [Backend](#backend)
+    - [Database](#database)
+    - [DevOps](#devops)
+    - [CI/CD](#cicd)
+    - [Security](#security-1)
+    - [Synchronization](#synchronization)
+    - [Data Analytics](#data-analytics)
+- [Project Structure](#project-structure)
 ## Project Description
 
 The Custom Furniture Manufacturing System is a web application designed to streamline the process of ordering custom-made furniture. When a customer places an order, the system estimates the production time, material costs, and labor costs. It also tracks the progress of the order from initiation to completion. The application aims to enhance efficiency, provide accurate cost estimates, and ensure timely delivery of custom furniture.
@@ -134,4 +159,33 @@ The Custom Furniture Manufacturing System is a web application designed to strea
 - **GET /api/admin/orders**: Get all orders for management.
 - **PUT /api/admin/orders/:orderId/status**: Update the status of an order.
 
+## Project Structure
 
+
+```
+custom-furniture-manufacturing-system/
+├── backend/
+│ ├── src/
+│ │ ├── index.ts
+│ │ ├── routers/
+│ │ └── middlewares/
+│ ├── prisma/
+│ │ ├── schema.prisma
+│ ├── package.json
+│ ├── tsconfig.json
+│ ├── Dockerfile
+│ └── .env
+├── frontend/
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── App.tsx
+│ │ └── index.tsx
+│ ├── public/
+│ ├── package.json
+│ ├── tsconfig.json
+│ ├── Dockerfile
+│ └── vite.config.ts
+├── docker-compose.yml
+└── README.md
+```
