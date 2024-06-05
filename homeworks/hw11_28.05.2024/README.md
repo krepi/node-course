@@ -17,6 +17,13 @@ version of the `JSON.parse` function using regular expressions. The project focu
 converting them into JavaScript objects, handling various JSON elements like objects, arrays, strings, numbers,
 booleans, and null values.
 
+### Tokenization Approach
+
+The tokenization in this project is handled using regular expressions to identify and parse different JSON elements such
+as objects, arrays, strings, numbers, booleans, and null values. By leveraging regular expressions, the parser can
+efficiently scan and extract tokens from the JSON input, ensuring that each element is correctly recognized and
+processed.
+
 ## Classes and Relationships
 
 This section details the classes, their methods, and how they relate to one another. The primary class in this project
