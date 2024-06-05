@@ -1,4 +1,5 @@
 # Custom Furniture Manufacturing System
+
 ## Table of Contents
 
 - [Project Description](#project-description)
@@ -25,9 +26,13 @@
     - [Synchronization](#synchronization)
     - [Data Analytics](#data-analytics)
 - [Project Structure](#project-structure)
+
 ## Project Description
 
-The Custom Furniture Manufacturing System is a web application designed to streamline the process of ordering custom-made furniture. When a customer places an order, the system estimates the production time, material costs, and labor costs. It also tracks the progress of the order from initiation to completion. The application aims to enhance efficiency, provide accurate cost estimates, and ensure timely delivery of custom furniture.
+The Custom Furniture Manufacturing System is a web application designed to streamline the process of ordering
+custom-made furniture. When a customer places an order, the system estimates the production time, material costs, and
+labor costs. It also tracks the progress of the order from initiation to completion. The application aims to enhance
+efficiency, provide accurate cost estimates, and ensure timely delivery of custom furniture.
 
 ## Functional Requirements
 
@@ -161,9 +166,8 @@ The Custom Furniture Manufacturing System is a web application designed to strea
 
 ## Project Structure
 
-
 ```
-custom-furniture-manufacturing-system/
+furnishcrafts/
 ├── backend/
 │ ├── src/
 │ │ ├── index.ts
