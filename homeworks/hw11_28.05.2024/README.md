@@ -34,20 +34,141 @@ A class containing a static method for parsing JSON strings into JavaScript obje
 ### Helper Methods:
 
 - `parseValue()`: Parses a JSON value.
+    - *O(n)*
 
 - `parseObject()`: Parses a JSON object.
+    - *O(n)*
+    - **Explanation**:
+        - **Regular Expression**: This method uses a regular expression to identify and extract object properties and
+          values.
+          ```javascript
+          const objectPattern = /\{(?:\s*(["'])(.*?)\1\s*:\s*(.*?)\s*,)*\s*(["'])(.*?)\4\s*:\s*(.*?)\s*\}/;
+          ```
+            - **`\{`**: Matches the opening curly brace `{`.
+            - **`(?:\s*(["'])(.*?)\1\s*:\s*(.*?)\s*,)*`**: Non-capturing group that matches key-value pairs separated by
+              commas.
+                - **`\s*`**: Matches any whitespace characters.
+                - **`(["'])`**: Matches and captures either a single or double quote (for string keys).
+                - **`(.*?)`**: Matches and captures the key (non-greedy).
+                - **`\1`**: Matches the same quote character used at the start of the key (ensuring matching quotes).
+                - **`\s*:\s*`**: Matches the colon `:` separating keys and values, with optional whitespace.
+                - **`(.*?)`**: Matches and captures the value (non-greedy).
+                - **`\s*,`**: Matches the comma separating key-value pairs.
+            - **`\s*(["'])(.*?)\4\s*:\s*(.*?)\s*\}`**: Matches the last key-value pair in the object, without a trailing
+              comma.
+                - **`\s*`**: Matches any whitespace characters.
+                - **`(["'])`**: Matches and captures either a single or double quote (for string keys).
+                - **`(.*?)`**: Matches and captures the key (non-greedy).
+                - **`\4`**: Matches the same quote character used at the start of the key (ensuring matching quotes).
+                - **`\s*:\s*`**: Matches the colon `:` separating keys and values, with optional whitespace.
+                - **`(.*?)`**: Matches and captures the value (non-greedy).
+                - **`\s*\}`**: Matches the closing curly brace `}`, with optional whitespace.
 
 - `parseArray()`: Parses a JSON array.
+    - *O(n)*
+    - **Explanation**:
+        - **Regular Expression**: This method uses a regular expression to identify and extract array elements.
+          ```javascript
+          const arrayPattern = /\[(\s*(.*?)\s*,)*\s*(.*?)\s*\]/;
+          ```
+            - **`\[`**: Matches the opening square bracket `[`.
+            - **`(\s*(.*?)\s*,)*`**: Matches array elements separated by commas.
+                - **`\s*`**: Matches any whitespace characters.
+                - **`(.*?)`**: Matches and captures an array element (non-greedy).
+                - **`\s*,`**: Matches the comma separating array elements.
+            - **`\s*(.*?)\s*\]`**: Matches the last element in the array, without a trailing comma.
+                - **`\s*`**: Matches any whitespace characters.
+                - **`(.*?)`**: Matches and captures the last array element (non-greedy).
+                - **`\s*\]`**: Matches the closing square bracket `]`, with optional whitespace.
 
 - `parseString()`: Parses a JSON string.
+    - *O(n)*
+    - **Explanation**:
+        - **Regular Expression**: This method uses a regular expression to identify and extract string values.
+          ```javascript
+          const stringPattern = /"(\\["\\\/bfnrt]|\\u[0-9a-fA-F]{4}|[^"\\])*"/;
+          ```
+            - **`"`**: Matches the opening double quote `"` of the string.
+            - **`(\\["\\\/bfnrt]|\\u[0-9a-fA-F]{4}|[^"\\])*`**: Matches the contents of the string.
+                - **`\\["\\\/bfnrt]`**: Matches escape sequences for characters
+                  like `\"`, `\\`, `\/`, `\b`, `\f`, `\n`, `\r`, and `\t`.
+                - **`\\u[0-9a-fA-F]{4}`**: Matches Unicode escape sequences (e.g., `\u1234`).
+                - **`[^"\\]`**: Matches any character except a double quote or backslash.
+            - **`*`**: Matches zero or more of the preceding group (the contents of the string).
+            - **`"`**: Matches the closing double quote `"` of the string.
 
 - `parseBoolean()`: Parses a JSON boolean.
+    - *O(1)*
+    - **Explanation**:
+        - This method does not use a regular expression. Instead, it directly checks for the values `true` and `false`.
+          ```javascript
+          if (jsonStringTrimmed.startsWith('true', index)) {
+              index += 4; // Move index past 'true'
+              return true;
+          } else if (jsonStringTrimmed.startsWith('false', index)) {
+              index += 5; // Move index past 'false'
+              return false;
+          } else {
+              throw new Error('Invalid boolean value');
+          }
+          ```
 
 - `parseNull()`: Parses a JSON null.
+    - *O(1)*
+    - **Explanation**:
+        - This method does not use a regular expression. Instead, it directly checks for the value `null`.
+          ```javascript
+          if (jsonStringTrimmed.startsWith('null', index)) {
+              index += 4; // Move index past 'null'
+              return null;
+          } else {
+              throw new Error('Invalid null value');
+          }
+          ```
 
 - `parseNumber()`: Parses a JSON number.
+    - *O(n)*
+    - **Explanation**:
+        - **Regular Expression**: The method uses the following regular expression to match numbers:
+          ```javascript
+          const numberPattern = /-?\d+(\.\d+)?([eE][+-]?\d+)?/y;
+          ```
+            - **`-?`**: Matches an optional negative sign.
+            - **`\d+`**: Matches one or more digits (the integer part).
+            - **`(\.\d+)?`**: Matches an optional decimal point followed by one or more digits (the fractional part).
+            - **`([eE][+-]?\d+)?`**: Matches an optional exponent part, which consists of an 'e' or 'E', an optional
+              sign ('+' or '-'), and one or more digits.
+            - **Flags**:
+                - **`y`** (sticky flag): Ensures that the match starts exactly at the position specified by
+                  the `lastIndex` property of the regular expression object.
+
+        - **Setting the `lastIndex`**:
+          ```javascript
+          numberPattern.lastIndex = index;
+          ```
+            - **`lastIndex`**: Specifies the position in the string where the next match attempt should start.
+
+        - **Executing the Match**:
+          ```javascript
+          const match = numberPattern.exec(jsonStringTrimmed);
+          ```
+            - **`exec` Method**: Tests for a match in a string. It returns an array of matched results or `null` if no
+              match is found. The array includes the matched text and any captured groups.
+
+            - **Example**:
+              ```javascript
+              const jsonStringTrimmed = " 123.45e-6 ";
+              let index = 1;  // Ignore the initial space
+              const numberPattern = /-?\d+(\.\d+)?([eE][+-]?\d+)?/y;
+              numberPattern.lastIndex = index;
+              const match = numberPattern.exec(jsonStringTrimmed);
+              ```
+                - **Result**: If successful, `match` will be an array containing:
+                    - `match[0]`: "123.45e-6" (the entire matched number)
+                - If no match is found, `match` will be `null`.
 
 - `skipWhitespace()`: Skips whitespace characters in the input string.
+    - *O(1)*
 
 ## Usage Example
 
