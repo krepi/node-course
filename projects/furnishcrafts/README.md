@@ -75,7 +75,6 @@ The Custom Furniture Manufacturing System is a web application designed to strea
 
 - **Node.js**: As the application server, handling business logic.
 - **Express.js**: For creating RESTful APIs and middleware to manage authentication and other backend functions.
-- **GraphQL**: For optimizing data queries, allowing clients to request exactly what they need.
 - **Prisma**: ORM for database management and automated migrations.
 
 ### Database
@@ -105,3 +104,34 @@ The Custom Furniture Manufacturing System is a web application designed to strea
 ### Data Analytics
 
 - **Google Analytics**: For monitoring and analyzing user interactions with the application.
+
+## REST API Endpoints
+
+### User Registration and Authentication
+
+- **POST /api/register**: Register a new user.
+- **POST /api/login**: Authenticate a user.
+
+### Order Placement
+
+- **POST /api/orders**: Place a new order for custom furniture.
+
+### Cost Estimation
+
+- **GET /api/orders/:orderId/estimate**: Get the cost estimation for an order.
+
+### Order Tracking
+
+- **GET /api/orders/:orderId/status**: Get the current status of an order.
+
+### Inventory Management
+
+- **GET /api/inventory**: Get current inventory levels.
+- **POST /api/inventory**: Update inventory levels.
+
+### Admin Panel
+
+- **GET /api/admin/orders**: Get all orders for management.
+- **PUT /api/admin/orders/:orderId/status**: Update the status of an order.
+
+
