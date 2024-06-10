@@ -23,8 +23,7 @@
     - [DevOps](#devops)
     - [CI/CD](#cicd)
     - [Security](#security-1)
-    - [Synchronization](#synchronization)
-    - [Data Analytics](#data-analytics)
+
 - [Project Structure](#project-structure)
 
 ## Project Description
@@ -97,43 +96,24 @@ efficiency, provide accurate cost estimates, and ensure timely delivery of custo
 
 - **React**: For building a dynamic and responsive user interface.
 - **TypeScript**: For improving code readability and reliability with static typing.
-- **Three.js**: For rendering 3D models of custom furniture in the browser.
-- **React Three Fiber**: For integrating Three.js with React, making it easier to manage 3D scenes.
-- **Next.js**: For server-side rendering (SSR) and static site generation (SSG), enhancing performance and SEO.
 
 ### Backend
 
 - **Node.js**: As the application server, handling business logic.
 - **Express.js**: For creating RESTful APIs and middleware to manage authentication and other backend functions.
-- **Prisma**: ORM for database management and automated migrations.
 
 ### Database
 
 - **PostgreSQL**: Relational database for storing information about users, projects, and orders.
-- **AWS S3**: For storing files such as 3D models and images.
 
 ### DevOps
 
 - **Docker**: For containerizing the application, facilitating deployment and management.
-- **Kubernetes**: For automating deployment, scaling, and management of containerized applications.
-- **Terraform**: For managing infrastructure as code (IaC).
-
-### CI/CD
-
-- **GitHub Actions**: For automating continuous integration and continuous deployment (CI/CD) processes.
 
 ### Security
 
 - **OAuth2 / OpenID Connect**: For managing user identity and access control.
 - **JWT (JSON Web Tokens)**: For securely transmitting information between parties.
-
-### Synchronization
-
-- **WebSockets (Socket.io)**: For real-time synchronization of order statuses and updates.
-
-### Data Analytics
-
-- **Google Analytics**: For monitoring and analyzing user interactions with the application.
 
 ## REST API Endpoints
 
