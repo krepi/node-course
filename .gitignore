@@ -133,3 +133,6 @@ dist
 homeworks/playgrounds.js 
 rept/
 my_lib/
+
+# ide
+.idea
