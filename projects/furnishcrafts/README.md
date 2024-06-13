@@ -115,34 +115,258 @@ efficiency, provide accurate cost estimates, and ensure timely delivery of custo
 - **OAuth2 / OpenID Connect**: For managing user identity and access control.
 - **JWT (JSON Web Tokens)**: For securely transmitting information between parties.
 
+
 ## REST API Endpoints
 
 ### User Registration and Authentication
 
-- **POST /api/register**: Register a new user.
-- **POST /api/login**: Authenticate a user.
+#### POST /api/register
+
+- Register a new user.
+
+> Request:
+>
+> ```bash
+> curl -X 'POST' \\
+>   '/api/register' \\
+>   -H 'Content-Type: application/json' \\
+>   -d '{
+>     "username": "username",
+>     "password": "password",
+>     "email": "user@example.com"
+>   }'
+> ```
+>
+> Response:
+>
+> ```json
+> {
+>   "id": 1,
+>   "username": "username",
+>   "email": "user@example.com"
+> }
+> ```
+
+#### POST /api/login
+
+- Authenticate a user.
+
+> Request:
+>
+> ```bash
+> curl -X 'POST' \\
+>   '/api/login' \\
+>   -H 'Content-Type: application/json' \\
+>   -d '{
+>     "username": "username",
+>     "password": "password"
+>   }'
+> ```
+>
+> Response:
+>
+> ```json
+> {
+>   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsiQURNSU4iXSwiZXhwIjoxNjc5MzMxNDUwMjQyfQ.4d2cdf71-78e57a475bed0bd4414526df-196a8ed6"
+> }
+> ```
 
 ### Order Placement
 
-- **POST /api/orders**: Place a new order for custom furniture.
+#### POST /api/orders
+
+- Place a new order for custom furniture.
+
+> Request:
+>
+> ```bash
+> curl -X 'POST' \\
+>   '/api/orders' \\
+>   -H 'Content-Type: application/json' \\
+>   -d '{
+>     "userId": 1,
+>     "items": [
+>       {
+>         "productId": 1,
+>         "quantity": 2
+>       },
+>       {
+>         "productId": 2,
+>         "quantity": 1
+>       }
+>     ],
+>     "shippingAddress": "123 Main St, Anytown, USA"
+>   }'
+> ```
+>
+> Response:
+>
+> ```json
+> {
+>   "orderId": 1,
+>   "status": "pending",
+>   "estimatedCost": 500.00
+> }
+> ```
 
 ### Cost Estimation
 
-- **GET /api/orders/:orderId/estimate**: Get the cost estimation for an order.
+#### GET /api/orders/:orderId/estimate
+
+- Get the cost estimation for an order.
+
+> Request:
+>
+> ```bash
+> curl -X 'GET' \\
+>   '/api/orders/1/estimate'
+> ```
+>
+> Response:
+>
+> ```json
+> {
+>   "orderId": 1,
+>   "estimatedCost": 500.00,
+>   "estimatedProductionTime": "2 weeks"
+> }
+> ```
 
 ### Order Tracking
 
-- **GET /api/orders/:orderId/status**: Get the current status of an order.
+#### GET /api/orders/:orderId/status
+
+- Get the current status of an order.
+
+> Request:
+>
+> ```bash
+> curl -X 'GET' \\
+>   '/api/orders/1/status'
+> ```
+>
+> Response:
+>
+> ```json
+> {
+>   "orderId": 1,
+>   "status": "in production",
+>   "estimatedCompletionDate": "2023-12-01"
+> }
+> ```
 
 ### Inventory Management
 
-- **GET /api/inventory**: Get current inventory levels.
-- **POST /api/inventory**: Update inventory levels.
+#### GET /api/inventory
+
+- Get current inventory levels.
+
+> Request:
+>
+> ```bash
+> curl -X 'GET' \\
+>   '/api/inventory'
+> ```
+>
+> Response:
+>
+> ```json
+> [
+>   {
+>     "materialId": 1,
+>     "materialName": "Wood",
+>     "quantity": 50
+>   },
+>   {
+>     "materialId": 2,
+>     "materialName": "Steel",
+>     "quantity": 20
+>   }
+> ]
+> ```
+
+#### POST /api/inventory
+
+- Update inventory levels.
+
+> Request:
+>
+> ```bash
+> curl -X 'POST' \\
+>   '/api/inventory' \\
+>   -H 'Content-Type: application/json' \\
+>   -d '{
+>     "materialId": 1,
+>     "quantity": 10
+>   }'
+> ```
+>
+> Response:
+>
+> ```json
+> {
+>   "materialId": 1,
+>   "materialName": "Wood",
+>   "quantity": 60
+> }
+> ```
 
 ### Admin Panel
 
-- **GET /api/admin/orders**: Get all orders for management.
-- **PUT /api/admin/orders/:orderId/status**: Update the status of an order.
+#### GET /api/admin/orders
+
+- Get all orders for management.
+
+> Request:
+>
+> ```bash
+> curl -X 'GET' \\
+>   '/api/admin/orders'
+> ```
+>
+> Response:
+>
+> ```json
+> [
+>   {
+>     "orderId": 1,
+>     "userId": 1,
+>     "status": "in production",
+>     "estimatedCompletionDate": "2023-12-01"
+>   },
+>   {
+>     "orderId": 2,
+>     "userId": 2,
+>     "status": "pending",
+>     "estimatedCompletionDate": "2023-12-05"
+>   }
+> ]
+> ```
+
+#### PUT /api/admin/orders/:orderId/status
+
+- Update the status of an order.
+
+> Request:
+>
+> ```bash
+> curl -X 'PUT' \\
+>   '/api/admin/orders/1/status' \\
+>   -H 'Content-Type: application/json' \\
+>   -d '{
+>     "status": "completed"
+>   }'
+> ```
+>
+> Response:
+>
+> ```json
+> {
+>   "orderId": 1,
+>   "status": "completed",
+>   "completionDate": "2023-12-01"
+> }
+> ```
 
 ## Project Structure
 
