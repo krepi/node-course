@@ -2,6 +2,10 @@
 
 ## Table of Contents
 
+# Custom Furniture Manufacturing System
+
+## Table of Contents
+
 - [Project Description](#project-description)
 - [Functional Requirements](#functional-requirements)
     - [User Registration and Authentication](#user-registration-and-authentication)
@@ -23,7 +27,13 @@
     - [DevOps](#devops)
     - [CI/CD](#cicd)
     - [Security](#security-1)
-
+- [REST API Endpoints](#rest-api-endpoints)
+    - [User Registration and Authentication](#user-registration-and-authentication-1)
+    - [Order Placement](#order-placement-1)
+    - [Cost Estimation](#cost-estimation-1)
+    - [Order Tracking](#order-tracking-1)
+    - [Inventory Management](#inventory-management-1)
+    - [Admin Panel](#admin-panel-1)
 - [Project Structure](#project-structure)
 
 ## Project Description
@@ -114,7 +124,6 @@ efficiency, provide accurate cost estimates, and ensure timely delivery of custo
 
 - **OAuth2 / OpenID Connect**: For managing user identity and access control.
 - **JWT (JSON Web Tokens)**: For securely transmitting information between parties.
-
 
 ## REST API Endpoints
 
