@@ -1,5 +1,6 @@
 {
   "name": "backend",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,5 +11,8 @@
     "type": "git",
     "url": "https://github.com/krepi/node-course.git"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }

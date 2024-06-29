@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "hashed_password",
+      "role": "admin"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Table Legs"
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "name": "Black"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "userId": 1,
+      "name": "New Project",
+      "status": "draft",
+      "elements": []
+    }
+  ]
+}
