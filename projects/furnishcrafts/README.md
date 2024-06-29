@@ -2,10 +2,6 @@
 
 ## Table of Contents
 
-# Custom Furniture Manufacturing System
-
-## Table of Contents
-
 - [Project Description](#project-description)
 - [Functional Requirements](#functional-requirements)
     - [User Registration and Authentication](#user-registration-and-authentication)
@@ -21,19 +17,16 @@
     - [Reliability](#reliability)
     - [Usability](#usability)
 - [Technologies and Their Applications](#technologies-and-their-applications)
-    - [Frontend](#frontend)
     - [Backend](#backend)
     - [Database](#database)
     - [DevOps](#devops)
-    - [CI/CD](#cicd)
     - [Security](#security-1)
 - [REST API Endpoints](#rest-api-endpoints)
     - [User Registration and Authentication](#user-registration-and-authentication-1)
-    - [Order Placement](#order-placement-1)
-    - [Cost Estimation](#cost-estimation-1)
-    - [Order Tracking](#order-tracking-1)
-    - [Inventory Management](#inventory-management-1)
-    - [Admin Panel](#admin-panel-1)
+    - [Elements Management](#elements-management)
+    - [Projects Management](#projects-management)
+    - [Categories Management](#categories-management)
+    - [Colors Management](#colors-management)
 - [Project Structure](#project-structure)
 
 ## Project Description
@@ -80,7 +73,6 @@ efficiency, provide accurate cost estimates, and ensure timely delivery of custo
 ### Performance
 
 - The application should be responsive and handle multiple simultaneous users efficiently.
-- 3D rendering of furniture designs should be smooth and fast.
 
 ### Scalability
 
@@ -102,11 +94,6 @@ efficiency, provide accurate cost estimates, and ensure timely delivery of custo
 
 ## Technologies and Their Applications
 
-### Frontend
-
-- **React**: For building a dynamic and responsive user interface.
-- **TypeScript**: For improving code readability and reliability with static typing.
-
 ### Backend
 
 - **Node.js**: As the application server, handling business logic.
@@ -122,287 +109,418 @@ efficiency, provide accurate cost estimates, and ensure timely delivery of custo
 
 ### Security
 
-- **OAuth2 / OpenID Connect**: For managing user identity and access control.
 - **JWT (JSON Web Tokens)**: For securely transmitting information between parties.
 
 ## REST API Endpoints
 
 ### User Registration and Authentication
 
-#### POST /api/register
+#### POST /api/v1/auth/register
 
 - Register a new user.
 
-> Request:
->
-> ```bash
-> curl -X 'POST' \\
->   '/api/register' \\
->   -H 'Content-Type: application/json' \\
->   -d '{
->     "username": "username",
->     "password": "password",
->     "email": "user@example.com"
->   }'
-> ```
->
-> Response:
->
-> ```json
-> {
->   "id": 1,
->   "username": "username",
->   "email": "user@example.com"
-> }
-> ```
+**Request:**
 
-#### POST /api/login
+```bash
+curl -X 'POST'   '/api/v1/auth/register'   -H 'Content-Type: application/json'   -d '{
+    "name": "John Doe",
+    "email": "john.doe@example.com",
+    "password": "secret",
+    "role": "admin"
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "token": "jwt_token_here"
+}
+```
+
+#### POST /api/v1/auth/login
 
 - Authenticate a user.
 
-> Request:
->
-> ```bash
-> curl -X 'POST' \\
->   '/api/login' \\
->   -H 'Content-Type: application/json' \\
->   -d '{
->     "username": "username",
->     "password": "password"
->   }'
-> ```
->
-> Response:
->
-> ```json
-> {
->   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZXMiOlsiQURNSU4iXSwiZXhwIjoxNjc5MzMxNDUwMjQyfQ.4d2cdf71-78e57a475bed0bd4414526df-196a8ed6"
-> }
-> ```
+**Request:**
 
-### Order Placement
+```bash
+curl -X 'POST'   '/api/v1/auth/login'   
+   -H 'Content-Type: application/json' 
+   -d '{
+    "email": "john.doe@example.com",
+    "password": "secret"
+  }'
+```
 
-#### POST /api/orders
+**Response:**
 
-- Place a new order for custom furniture.
+```json
+{
+  "token": "jwt_token_here"
+}
+```
 
-> Request:
->
-> ```bash
-> curl -X 'POST' \\
->   '/api/orders' \\
->   -H 'Content-Type: application/json' \\
->   -d '{
->     "userId": 1,
->     "items": [
->       {
->         "productId": 1,
->         "quantity": 2
->       },
->       {
->         "productId": 2,
->         "quantity": 1
->       }
->     ],
->     "shippingAddress": "123 Main St, Anytown, USA"
->   }'
-> ```
->
-> Response:
->
-> ```json
-> {
->   "orderId": 1,
->   "status": "pending",
->   "estimatedCost": 500.00
-> }
-> ```
+### Elements Management
 
-### Cost Estimation
+#### POST /api/v1/elements
 
-#### GET /api/orders/:orderId/estimate
+- Create a new element (admin only).
 
-- Get the cost estimation for an order.
+**Request:**
 
-> Request:
->
-> ```bash
-> curl -X 'GET' \\
->   '/api/orders/1/estimate'
-> ```
->
-> Response:
->
-> ```json
-> {
->   "orderId": 1,
->   "estimatedCost": 500.00,
->   "estimatedProductionTime": "2 weeks"
-> }
-> ```
+```bash
+curl -X 'POST'   '/api/v1/elements'   
+-H 'Content-Type: application/json'   
+-H 'Authorization: Bearer jwt_token_here'   
+-d '{
+    "name": "Table Leg",
+    "width": 5.0,
+    "height": 70.0,
+    "depth": 5.0,
+    "material": "Wood",
+    "price": 10.0,
+    "stock": 100,
+    "categoryId": 1,
+    "colorId": 2
+  }'
+```
 
-### Order Tracking
+**Response:**
 
-#### GET /api/orders/:orderId/status
+```json
+{
+  "id": 1,
+  "name": "Table Leg",
+  "width": 5.0,
+  "height": 70.0,
+  "depth": 5.0,
+  "material": "Wood",
+  "price": 10.0,
+  "stock": 100,
+  "categoryId": 1,
+  "colorId": 2
+}
+```
 
-- Get the current status of an order.
+#### GET /api/v1/elements
 
-> Request:
->
-> ```bash
-> curl -X 'GET' \\
->   '/api/orders/1/status'
-> ```
->
-> Response:
->
-> ```json
-> {
->   "orderId": 1,
->   "status": "in production",
->   "estimatedCompletionDate": "2023-12-01"
-> }
-> ```
+- Get a list of elements with optional filtering.
 
-### Inventory Management
+**Request:**
 
-#### GET /api/inventory
+```bash
+curl -X 'GET'   '/api/v1/elements?categoryId=1&colorId=2'   
+-H 'Authorization: Bearer jwt_token_here'
+```
 
-- Get current inventory levels.
+**Response:**
 
-> Request:
->
-> ```bash
-> curl -X 'GET' \\
->   '/api/inventory'
-> ```
->
-> Response:
->
-> ```json
-> [
->   {
->     "materialId": 1,
->     "materialName": "Wood",
->     "quantity": 50
->   },
->   {
->     "materialId": 2,
->     "materialName": "Steel",
->     "quantity": 20
->   }
-> ]
-> ```
+```json
+[
+  {
+    "id": 1,
+    "name": "Table Leg",
+    "width": 5.0,
+    "height": 70.0,
+    "depth": 5.0,
+    "material": "Wood",
+    "price": 10.0,
+    "stock": 100,
+    "categoryId": 1,
+    "colorId": 2
+  }
+]
+```
 
-#### POST /api/inventory
+#### GET /api/v1/elements/:id
 
-- Update inventory levels.
+- Get details of an element by ID.
 
-> Request:
->
-> ```bash
-> curl -X 'POST' \\
->   '/api/inventory' \\
->   -H 'Content-Type: application/json' \\
->   -d '{
->     "materialId": 1,
->     "quantity": 10
->   }'
-> ```
->
-> Response:
->
-> ```json
-> {
->   "materialId": 1,
->   "materialName": "Wood",
->   "quantity": 60
-> }
-> ```
+**Request:**
 
-### Admin Panel
+```bash
+curl -X 'GET'   '/api/v1/elements/1'   
+-H 'Authorization: Bearer jwt_token_here'
+```
 
-#### GET /api/admin/orders
+**Response:**
 
-- Get all orders for management.
+```json
+{
+  "id": 1,
+  "name": "Table Leg",
+  "width": 5.0,
+  "height": 70.0,
+  "depth": 5.0,
+  "material": "Wood",
+  "price": 10.0,
+  "stock": 100,
+  "categoryId": 1,
+  "colorId": 2
+}
+```
 
-> Request:
->
-> ```bash
-> curl -X 'GET' \\
->   '/api/admin/orders'
-> ```
->
-> Response:
->
-> ```json
-> [
->   {
->     "orderId": 1,
->     "userId": 1,
->     "status": "in production",
->     "estimatedCompletionDate": "2023-12-01"
->   },
->   {
->     "orderId": 2,
->     "userId": 2,
->     "status": "pending",
->     "estimatedCompletionDate": "2023-12-05"
->   }
-> ]
-> ```
+### Projects Management
 
-#### PUT /api/admin/orders/:orderId/status
+#### POST /api/v1/users/:userId/projects
 
-- Update the status of an order.
+- Create a new project for a user.
 
-> Request:
->
-> ```bash
-> curl -X 'PUT' \\
->   '/api/admin/orders/1/status' \\
->   -H 'Content-Type: application/json' \\
->   -d '{
->     "status": "completed"
->   }'
-> ```
->
-> Response:
->
-> ```json
-> {
->   "orderId": 1,
->   "status": "completed",
->   "completionDate": "2023-12-01"
-> }
-> ```
+**Request:**
+
+```bash
+curl -X 'POST'   '/api/v1/users/1/projects'   
+-H 'Content-Type: application/json'   
+-H 'Authorization: Bearer jwt_token_here'   
+-d '{
+    "name": "New Project",
+    "elements": []
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "userId": 1,
+  "name": "New Project",
+  "status": "draft",
+  "elements": []
+}
+```
+
+#### GET /api/v1/users/:userId/projects
+
+- Get a list of projects for a user.
+
+**Request:**
+
+```bash
+curl -X 'GET'   '/api/v1/users/1/projects'   
+-H 'Authorization: Bearer jwt_token_here'
+```
+
+**Response:**
+
+```json
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "name": "New Project",
+    "status": "draft",
+    "elements": []
+  }
+]
+```
+
+#### GET /api/v1/users/:userId/projects/:projectId
+
+- Get details of a project for a user by project ID.
+
+**Request:**
+
+```bash
+curl -X 'GET'   '/api/v1/users/1/projects/1'   
+-H 'Authorization: Bearer jwt_token_here'
+```
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "userId": 1,
+  "name": "New Project",
+  "status": "draft",
+  "elements": []
+}
+```
+
+#### PUT /api/v1/users/:userId/projects/:projectId/add-element
+
+- Add an element to an existing project.
+
+**Request:**
+
+```bash
+curl -X 'PUT'   '/api/v1/users/1/projects/1/add-element'   
+-H 'Content-Type: application/json'   
+-H 'Authorization: Bearer jwt_token_here'   
+-d '{
+    "elementId": 1,
+    "quantity": 4
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "message": "Element added to project"
+}
+```
+
+#### PUT /api/v1/users/:userId/projects/:projectId/confirm
+
+- Confirm a project, creating an order.
+
+**Request:**
+
+```bash
+curl -X 'PUT'   '/api/v1/users/1/projects/1/confirm'   
+-H 'Authorization: Bearer jwt_token_here'
+```
+
+**Response:**
+
+```json
+{
+  "message": "Project confirmed"
+}
+```
+
+### Categories Management
+
+#### POST /api/v1/categories
+
+- Create a new category (admin only).
+
+**Request:**
+
+```bash
+curl -X 'POST'   '/api/v1/categories'   
+-H 'Content-Type: application/json'   
+-H 'Authorization: Bearer jwt_token_here'   
+-d '{
+    "name": "Table Legs"
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "name": "Table Legs"
+}
+```
+
+#### GET /api/v1/categories
+
+- Get a list of categories.
+
+**Request:**
+
+```bash
+curl -X 'GET'   '/api/v1/categories'   
+-H 'Authorization: Bearer jwt_token_here'
+```
+
+**Response:**
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Table Legs"
+  }
+]
+```
+
+### Colors Management
+
+#### POST /api/v1/colors
+
+- Create a new color (admin only).
+
+**Request:**
+
+```bash
+curl -X 'POST'   '/api/v1/colors'   
+-H 'Content-Type: application/json'   
+-H 'Authorization: Bearer jwt_token_here'   
+-d '{
+    "name": "Black"
+  }'
+```
+
+**Response:**
+
+```json
+{
+  "id": 1,
+  "name": "Black"
+}
+```
+
+#### GET /api/v1/colors
+
+- Get a list of colors.
+
+**Request:**
+
+```bash
+curl -X 'GET'   '/api/v1/colors'   
+-H 'Authorization: Bearer jwt_token_here'
+```
+
+**Response:**
+
+```json
+[
+  {
+    "id": 1,
+    "name": "Black"
+  }
+]
+```
 
 ## Project Structure
 
 ```
-furnishcrafts/
-├── backend/
-│ ├── src/
-│ │ ├── index.ts
-│ │ ├── routers/
-│ │ └── middlewares/
-│ ├── prisma/
-│ │ ├── schema.prisma
-│ ├── package.json
-│ ├── tsconfig.json
-│ ├── Dockerfile
-│ └── .env
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── App.tsx
-│ │ └── index.tsx
-│ ├── public/
-│ ├── package.json
-│ ├── tsconfig.json
-│ ├── Dockerfile
-│ └── vite.config.ts
-├── docker-compose.yml
-└── README.md
+backend/
+├── src/
+│   ├── models/
+│   │   ├── userModel.js
+│   │   ├── elementModel.js
+│   │   ├── projectModel.js
+│   │   ├── categoryModel.js
+│   │   ├── colorModel.js
+│   ├── repositories/
+│   │   ├── userRepository.js
+│   │   ├── elementRepository.js
+│   │   ├── projectRepository.js
+│   │   ├── categoryRepository.js
+│   │   ├── colorRepository.js
+│   ├── services/
+│   │   ├── userService.js
+│   │   ├── elementService.js
+│   │   ├── projectService.js
+│   │   ├── categoryService.js
+│   │   ├── colorService.js
+│   ├── controllers/
+│   │   ├── userController.js
+│   │   ├── elementController.js
+│   │   ├── projectController.js
+│   │   ├── categoryController.js
+│   │   ├── colorController.js
+│   ├── routes/
+│   │   ├── userRoutes.js
+│   │   ├── elementRoutes.js
+│   │   ├── projectRoutes.js
+│   │   ├── categoryRoutes.js
+│   │   ├── colorRoutes.js
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   ├── config/
+│   │   └── database.js
+│   └── app.js
+├── .env
+├── .gitignore
+├── Dockerfile
+└── docker-compose.yml
+
 ```
