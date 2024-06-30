@@ -18,6 +18,11 @@ class UserRepository {
         return data.users;
     }
 
+    getUserById(id) {
+        const data = readData();
+        return data.users.find(user => user.id === id);
+    }
+
     getUserByEmail(email) {
         const data = readData();
         return data.users.find(user => user.email === email);

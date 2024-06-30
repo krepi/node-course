@@ -11,6 +11,19 @@ class UserController {
         }
     }
 
+    async getUserById(req, res) {
+        try {
+            const {id} = req.params;
+            const user = userService.getUserById(parseInt(id, 10));
+            if (!user) {
+                return res.status(404).json({message: 'User not found'});
+            }
+            res.status(200).json(user);
+        } catch (error) {
+            res.status(400).json({message: error.message});
+        }
+    }
+
     async getAllUsers(req, res) {
         try {
             const users = userService.getAllUsers();

@@ -9,6 +9,10 @@ class UserService {
         return userRepository.getUserByEmail(email);
     }
 
+    getUserById(id) {
+        return userRepository.getUserById(id);
+    }
+
     createUser(user) {
         const existingUser = this.getUserByEmail(user.email);
         if (existingUser) {
