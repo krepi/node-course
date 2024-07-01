@@ -5,7 +5,7 @@ const router = express.Router();
 const elementController = new ElementController();
 
 
-// router.get('/:id', (req, res) => userController.getUserById(req, res));
-router.get('/', (req, res) => elementController.getAllElements(req, res));
+router.get('/:id', elementController.getElementById);
+router.get('/', elementController.getAllElements);
 
 export default router;

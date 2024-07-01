@@ -39,27 +39,51 @@
   "elements": [
     {
       "id": 1,
-      "name": "oak short leg",
-      "category": 1,
-      "color": 2
+      "name": "Table Leg",
+      "width": 5.0,
+      "height": 70.0,
+      "depth": 5.0,
+      "material": "Wood",
+      "price": 10.0,
+      "stock": 100,
+      "categoryId": 1,
+      "colorId": 2
     },
     {
-      "id": 1,
-      "name": "oak short leg",
-      "category": 1,
-      "color": 2
+      "id": 2,
+      "name": "Table Leg",
+      "width": 5.0,
+      "height": 70.0,
+      "depth": 5.0,
+      "material": "Wood",
+      "price": 10.0,
+      "stock": 100,
+      "categoryId": 1,
+      "colorId": 2
     },
     {
-      "id": 1,
-      "name": "pine short leg",
-      "category": 1,
-      "color": 2
+      "id": 3,
+      "name": "Table Short Leg",
+      "width": 5.0,
+      "height": 70.0,
+      "depth": 5.0,
+      "material": "Wood",
+      "price": 10.0,
+      "stock": 100,
+      "categoryId": 1,
+      "colorId": 1
     },
     {
-      "id": 1,
-      "name": "oak long leg",
-      "category": 1,
-      "color": 2
+      "id": 4,
+      "name": "Table Short Leg",
+      "width": 5.0,
+      "height": 70.0,
+      "depth": 5.0,
+      "material": "Wood",
+      "price": 10.0,
+      "stock": 100,
+      "categoryId": 1,
+      "colorId": 2
     }
   ]
 }
