@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const dataPath = path.join(path.resolve(), '/data/data.json');
+const dataPath = path.join(path.resolve(), '/src/data/data.json');
 
 function readData() {
     const data = fs.readFileSync(dataPath);

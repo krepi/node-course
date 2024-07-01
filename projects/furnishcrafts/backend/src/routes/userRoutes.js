@@ -4,8 +4,9 @@ import UserController from '../controllers/userController.js';
 const router = express.Router();
 const userController = new UserController();
 
-router.post('/register', (req, res) => userController.register(req, res));
-router.get('/:id', (req, res) => userController.getUserById(req, res));
-router.get('/', (req, res) => userController.getAllUsers(req, res));
+router.get('/', userController.getAllUsers);
+router.get('/:id', userController.getUserById);
+router.post('/register', userController.register);
 
 export default router;
+
