@@ -1,25 +1,13 @@
-import fs from 'fs';
-import path from 'path';
-
-const dataPath = path.join(path.resolve(), '/src/data/data.json');
-
-function readData() {
-    const data = fs.readFileSync(dataPath);
-    return JSON.parse(data);
-}
-
-function writeData(data) {
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-}
+import {readData, writeData} from "../helpers/mockedDataHelper.js";
 
 class UserRepository {
-    getAllUsers() {
-        const data = readData();
+   async getAllUsers() {
+        const data = await readData();
         return data.users;
     }
 
-    getUserById(id) {
-        const data = readData();
+   async getUserById(id) {
+        const data = await readData();
         return data.users.find(user => user.id === id);
     }
 

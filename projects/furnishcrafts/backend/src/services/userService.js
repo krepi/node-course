@@ -1,16 +1,16 @@
 import userRepository from '../repositories/userRepository.js';
 
 class UserService {
-    getAllUsers() {
-        return userRepository.getAllUsers();
+   async getAllUsers() {
+        return  await userRepository.getAllUsers();
     }
 
-    getUserByEmail(email) {
-        return userRepository.getUserByEmail(email);
+   async getUserByEmail(email) {
+        return await userRepository.getUserByEmail(email);
     }
 
-    getUserById(id) {
-        return userRepository.getUserById(id);
+   async getUserById(id) {
+        return await userRepository.getUserById(id);
     }
 
     createUser(user) {

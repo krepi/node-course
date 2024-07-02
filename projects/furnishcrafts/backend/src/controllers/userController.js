@@ -1,7 +1,7 @@
 import userService from '../services/userService.js';
 
 class UserController {
-    async register(req, res) {
+    register = async (req, res) => {
         try {
             const {name, email, password, role} = req.body;
             const newUser = userService.createUser({name, email, password, role});
@@ -11,10 +11,10 @@ class UserController {
         }
     }
 
-    async getUserById(req, res) {
+    getUserById = async (req, res) => {
         try {
             const {id} = req.params;
-            const user = userService.getUserById(parseInt(id, 10));
+            const user = await userService.getUserById(parseInt(id, 10));
             if (!user) {
                 return res.status(404).json({message: 'User not found'});
             }
@@ -24,9 +24,9 @@ class UserController {
         }
     }
 
-    async getAllUsers(req, res) {
+    getAllUsers = async (req, res) => {
         try {
-            const users = userService.getAllUsers();
+            const users = await userService.getAllUsers();
             res.status(200).json(users);
         } catch (error) {
             res.status(400).json({message: error.message});
