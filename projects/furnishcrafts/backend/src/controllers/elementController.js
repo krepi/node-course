@@ -7,7 +7,7 @@ class ElementController {
      * @param res
      * @returns {Promise<void>}
      */
-    async getAllElements(req, res) {
+     getAllElements = async (req, res) => {
         try {
             const elements = await elementService.getAllElements();
             res.status(200).json(elements)
@@ -22,7 +22,7 @@ class ElementController {
      * @param res
      * @returns {Promise<void>}
      */
-    async getElementById(req, res) {
+     getElementById = async (req, res) => {
         try{
             const {id} = req.params;
             const element = await elementService.getElementById(parseInt(id, 10));

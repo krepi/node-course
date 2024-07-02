@@ -1,16 +1,4 @@
-import path from "path";
-import fs from "fs";
-
-const dataPath = path.join(path.resolve(), '/src/data/data.json');
-
-async function readData() {
-    const data = await fs.readFileSync(dataPath);
-    return JSON.parse(data);
-}
-
-function writeData(data) {
-    fs.writeFileSync(dataPath, JSON.stringify(data, null, 2));
-}
+import {readData} from "../helpers/mockedDataHelper.js";
 
 class ElementRepository {
     async getAllElements() {

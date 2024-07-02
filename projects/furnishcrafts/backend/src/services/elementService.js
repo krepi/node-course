@@ -2,7 +2,7 @@ import elementRepository from "../repositories/elementRepository.js";
 
 class ElementService {
     /**
-     * 
+     * Method to fetch all elements
      * @returns {Promise<*>}
      */
     async getAllElements() {
@@ -10,7 +10,7 @@ class ElementService {
     }
 
     /**
-     *
+     * Method to fetch element by its ID
      * @param id id of element stored in DB
      * @returns {Promise<*>}
      */
