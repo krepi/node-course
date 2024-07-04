@@ -6,7 +6,7 @@ import {authenticateToken} from "../middleware/authMiddleware.js";
 const router = express.Router();
 const userController = new UserController();
 
-router.get('/', userController.getAllUsers);
+
 router.get('/:id',authenticateToken, userController.getUserById);
 
 

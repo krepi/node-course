@@ -16,11 +16,7 @@ class AuthController {
     async login(req, res) {
         try {
             const { email, password } = req.body;
-            const user = await userService.getUserByEmail(email);
-            if (!user || user.password !== password) {
-                return res.status(401).json({ message: 'Invalid credentials' });
-            }
-
+            const user = await userService.validateUser(email, password);
             const token = generateJWT({ id: user.id, role: user.role });
             res.json({ token });
         } catch (error) {
