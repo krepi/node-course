@@ -11,13 +11,13 @@ class UserRepository {
         return data.users.find(user => user.id === id);
     }
 
-    getUserByEmail(email) {
-        const data = readData();
+    async getUserByEmail(email) {
+        const data = await readData();
         return data.users.find(user => user.email === email);
     }
 
-    createUser(user) {
-        const data = readData();
+    async createUser(user) {
+        const data = await readData();
         user.id = data.users.length + 1;
         data.users.push(user);
         writeData(data);

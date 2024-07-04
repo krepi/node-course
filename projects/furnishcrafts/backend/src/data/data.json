@@ -4,7 +4,7 @@
       "id": 1,
       "name": "John Doe",
       "email": "john.doe@example.com",
-      "password": "hashed_password",
+      "password": "password",
       "role": "admin"
     },
     {
@@ -13,6 +13,20 @@
       "email": "jane.doe@example.com",
       "password": "hashed_password",
       "role": "common"
+    },
+    {
+      "name": "John New",
+      "email": "j@d",
+      "password": "halabele",
+      "role": "admin",
+      "id": 3
+    },
+    {
+      "name": "John New",
+      "email": "j@doe",
+      "password": "halabele2",
+      "role": "common",
+      "id": 4
     }
   ],
   "categories": [
@@ -40,11 +54,11 @@
     {
       "id": 1,
       "name": "Table Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 2
@@ -52,11 +66,11 @@
     {
       "id": 2,
       "name": "Table Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 2
@@ -64,11 +78,11 @@
     {
       "id": 3,
       "name": "Table Short Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 1
@@ -76,11 +90,11 @@
     {
       "id": 4,
       "name": "Table Short Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 2

@@ -13,8 +13,8 @@ class UserService {
         return await userRepository.getUserById(id);
     }
 
-    createUser(user) {
-        const existingUser = this.getUserByEmail(user.email);
+    async createUser(user) {
+        const existingUser = await this.getUserByEmail(user.email);
         if (existingUser) {
             throw new Error('User already exists');
         }
