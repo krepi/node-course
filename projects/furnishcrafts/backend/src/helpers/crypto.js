@@ -1,4 +1,4 @@
-import crypto from 'backend/src/helpers/crypto.js';
+import crypto from 'crypto';
 
 
 const secret = crypto.randomBytes(32).toString('hex');
