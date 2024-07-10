@@ -12,6 +12,12 @@
       "password": "$2b$10$Nr9i/bODE0Tx9ts8kjPggeu/pNN0wdwUOJ.OFIn5X.wEMZA2ogOFW",
       "id": 2,
       "role": "user"
+    },
+    {
+      "name": "krepi",
+      "email": "k@k",
+      "password": "$2b$10$gtgD4V4XlQyAzxoFdaAnV.pVfNYhXUnMfKq92yjIi8P4FzggjFKv6",
+      "id": 3
     }
   ],
   "categories": [

@@ -1,4 +1,5 @@
 const secret = process.env.JWT_SECRET;
+import crypto from 'crypto';
 
 
 /**
