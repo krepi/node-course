@@ -1,18 +1,23 @@
 {
   "users": [
     {
-      "id": 1,
       "name": "John Doe",
-      "email": "john.doe@example.com",
-      "password": "hashed_password",
+      "email": "j@doe",
+      "password": "$2b$10$ovOkjQhUyMbg9PZSJ8GoYOQhlMEEX4eVamFvgSFfhyIoqpD15EC72",
+      "id": 1,
       "role": "admin"
     },
     {
+      "email": "jane@doe",
+      "password": "$2b$10$Nr9i/bODE0Tx9ts8kjPggeu/pNN0wdwUOJ.OFIn5X.wEMZA2ogOFW",
       "id": 2,
-      "name": "Jane Doe",
-      "email": "jane.doe@example.com",
-      "password": "hashed_password",
-      "role": "common"
+      "role": "user"
+    },
+    {
+      "name": "krepi",
+      "email": "k@k",
+      "password": "$2b$10$gtgD4V4XlQyAzxoFdaAnV.pVfNYhXUnMfKq92yjIi8P4FzggjFKv6",
+      "id": 3
     }
   ],
   "categories": [
@@ -30,7 +35,7 @@
   "projects": [
     {
       "id": 1,
-      "userId": 1,
+      "userId": 2,
       "name": "New Project",
       "status": "draft",
       "elements": []
@@ -40,11 +45,11 @@
     {
       "id": 1,
       "name": "Table Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 2
@@ -52,11 +57,11 @@
     {
       "id": 2,
       "name": "Table Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 2
@@ -64,11 +69,11 @@
     {
       "id": 3,
       "name": "Table Short Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 1
@@ -76,11 +81,11 @@
     {
       "id": 4,
       "name": "Table Short Leg",
-      "width": 5.0,
-      "height": 70.0,
-      "depth": 5.0,
+      "width": 5,
+      "height": 70,
+      "depth": 5,
       "material": "Wood",
-      "price": 10.0,
+      "price": 10,
       "stock": 100,
       "categoryId": 1,
       "colorId": 2

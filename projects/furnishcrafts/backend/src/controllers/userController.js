@@ -1,15 +1,6 @@
 import userService from '../services/userService.js';
 
 class UserController {
-    register = async (req, res) => {
-        try {
-            const {name, email, password, role} = req.body;
-            const newUser = userService.createUser({name, email, password, role});
-            res.status(201).json(newUser);
-        } catch (error) {
-            res.status(400).json({message: error.message});
-        }
-    }
 
     getUserById = async (req, res) => {
         try {
@@ -24,14 +15,6 @@ class UserController {
         }
     }
 
-    getAllUsers = async (req, res) => {
-        try {
-            const users = await userService.getAllUsers();
-            res.status(200).json(users);
-        } catch (error) {
-            res.status(400).json({message: error.message});
-        }
-    }
 }
 
 export default UserController;
