@@ -17,7 +17,8 @@
       "name": "krepi",
       "email": "k@k",
       "password": "$2b$10$gtgD4V4XlQyAzxoFdaAnV.pVfNYhXUnMfKq92yjIi8P4FzggjFKv6",
-      "id": 3
+      "id": 3,
+      "role": "admin"
     }
   ],
   "categories": [

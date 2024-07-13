@@ -1,5 +1,5 @@
 import userService from '../services/userService.js';
-import { generateJWT } from '../helpers/customJWT/jwtHelper.js';
+import { generateJWT } from '../../../helpers/customJWT/jwtHelper.js';
 
 class AuthController {
     async register(req, res) {

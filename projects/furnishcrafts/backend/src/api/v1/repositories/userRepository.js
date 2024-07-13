@@ -1,4 +1,4 @@
-import {readData, writeData} from "../helpers/mockedDataHelper.js";
+import {readData, writeData} from "../../../helpers/mockedDataHelper.js";
 
 class UserRepository {
    async getAllUsers() {

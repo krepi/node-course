@@ -1,4 +1,4 @@
-import {readData} from "../helpers/mockedDataHelper.js";
+import {readData} from "../../../helpers/mockedDataHelper.js";
 
 class CategoryRepository {
 

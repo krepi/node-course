@@ -1,4 +1,4 @@
-import {validateJWT} from '../helpers/customJWT/jwtHelper.js'
+import {validateJWT} from '../../../helpers/customJWT/jwtHelper.js'
 
 const authenticateToken = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1];
