@@ -5,6 +5,6 @@ import {authenticateToken, authorizeRole} from "../middleware/authMiddleware.js"
 const router = express.Router();
 const adminController = new AdminController();
 
-router.get('/users', authenticateToken, authorizeRole('admin'), adminController.getAllUsers)
+router.get('/users', authenticateToken, authorizeRole('administrator'), adminController.getAllUsers)
 
 export default router;
