@@ -2,6 +2,12 @@ import userService from '../services/userService.js';
 import { generateJWT } from '../../../helpers/customJWT/jwtHelper.js';
 
 class AuthController {
+    /**
+     *
+     * @param req
+     * @param res
+     * @returns {Promise<void>}
+     */
     async register(req, res) {
         try {
             const { name, email, password, role } = req.body;
@@ -13,6 +19,12 @@ class AuthController {
         }
     }
 
+    /**
+     * 
+     * @param req
+     * @param res
+     * @returns {Promise<void>}
+     */
     async login(req, res) {
         try {
             const { email, password } = req.body;
