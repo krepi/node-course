@@ -32,24 +32,29 @@ async function createDatabase() {
         const res = await client.query(`SELECT 1 FROM pg_database WHERE datname = $1`, [process.env.DB_NAME]);
         if (res.rowCount > 0) {
             console.log(`Database ${process.env.DB_NAME} already exists`);
-            throw new Error("Database already exists");
+            return;  // Stop further execution if the database exists
         } else {
             // Create the new database
             await client.query(`CREATE DATABASE ${process.env.DB_NAME}`);
             console.log(`Database ${process.env.DB_NAME} created successfully`);
         }
-
+    } catch (err) {
+        console.error('Error creating database and tables', err.stack);
+    } finally {
+        // Ensure the client is closed in both success and error cases
         await client.end();
+    }
 
-        // Now connect to the newly created database and create tables
-        const dbClient = new Client({
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            host: process.env.DB_HOST,
-            port: process.env.DB_PORT,
-            database: process.env.DB_NAME,
-        });
+    // Now connect to the newly created database and create tables
+    const dbClient = new Client({
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        database: process.env.DB_NAME,
+    });
 
+    try {
         await dbClient.connect();
         console.log(`Connected to the database ${process.env.DB_NAME}`);
 
@@ -62,10 +67,11 @@ async function createDatabase() {
         }
 
         console.log("Database and tables created successfully");
-
-        await dbClient.end();
     } catch (err) {
-        console.error('Error creating database and tables', err.stack);
+        console.error('Error creating tables', err.stack);
+    } finally {
+        // Ensure the dbClient is closed in both success and error cases
+        await dbClient.end();
     }
 }
 
