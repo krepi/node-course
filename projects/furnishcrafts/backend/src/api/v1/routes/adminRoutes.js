@@ -7,4 +7,6 @@ const adminController = new AdminController();
 
 router.get('/users', authenticateToken, authorizeRole('administrator'), adminController.getAllUsers)
 
+router.post ('/categories', authenticateToken, authorizeRole('administrator'), adminController.addCategory )
+
 export default router;

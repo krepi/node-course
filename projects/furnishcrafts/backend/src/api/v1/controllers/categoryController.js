@@ -2,6 +2,7 @@ import categoryService from '../services/categoryService.js'
 
 class CategoryController {
 
+
     getAllCategories = async ( req, res) => {
         try {
             const categories = await categoryService.getAllCategories();
