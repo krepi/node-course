@@ -32,6 +32,7 @@ async function createDatabase() {
         const res = await client.query(`SELECT 1 FROM pg_database WHERE datname = $1`, [process.env.DB_NAME]);
         if (res.rowCount > 0) {
             console.log(`Database ${process.env.DB_NAME} already exists`);
+            throw new Error("Database already exists");
         } else {
             // Create the new database
             await client.query(`CREATE DATABASE ${process.env.DB_NAME}`);
