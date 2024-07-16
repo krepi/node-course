@@ -174,8 +174,7 @@ DB_MAIN_PASSWORD=your_main_database_password
 ```
 ### Clone the repository
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/krepi/node-course/tree/main/projects/furnishcrafts
 
 ```
 ### Install dependencies
