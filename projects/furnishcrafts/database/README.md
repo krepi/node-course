@@ -190,4 +190,4 @@ node src/config/createDatabase.js
 This script will:
 Connect to the PostgreSQL server using the credentials provided in the .env file.
 Create a new database (if it does not already exist).
-Execute the SQL script (init.sql) to create the necessary tables and relationships.
+Execute the SQL script (schema.sql) to create the necessary tables and relationships.

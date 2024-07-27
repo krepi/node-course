@@ -1,15 +1,23 @@
-FROM node:21-alpine
+# Use an official Node.js image as the base image
+FROM node:22
 
-ENV NODE_ENV=development
 
+
+# Set the working directory inside the container
 WORKDIR /app
 
-COPY package.json ./app
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
 
+# Install the dependencies
 RUN npm install
 
+# Copy the rest of the application's source code
 COPY . .
 
+# Expose port 3000 to the outside world
 EXPOSE 3000
 
-CMD ["npm", "run", "devStart"]
+# Start the application
+CMD ["npm","run", "devStart"]
+

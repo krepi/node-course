@@ -2,32 +2,35 @@
 
 ## Table of Contents
 
+## Table of Contents
+
 - [Project Description](#project-description)
 - [Functional Requirements](#functional-requirements)
-    - [User Registration and Authentication](#user-registration-and-authentication)
-    - [Order Placement](#order-placement)
-    - [Cost Estimation](#cost-estimation)
-    - [Order Tracking](#order-tracking)
-    - [Inventory Management](#inventory-management)
-    - [Admin Panel](#admin-panel)
+  - [User Registration and Authentication](#user-registration-and-authentication)
+  - [Order Placement](#order-placement)
+  - [Cost Estimation](#cost-estimation)
+  - [Order Tracking](#order-tracking)
+  - [Inventory Management](#inventory-management)
+  - [Admin Panel](#admin-panel)
 - [Non-Functional Requirements](#non-functional-requirements)
-    - [Performance](#performance)
-    - [Scalability](#scalability)
-    - [Security](#security)
-    - [Reliability](#reliability)
-    - [Usability](#usability)
+  - [Performance](#performance)
+  - [Scalability](#scalability)
+  - [Security](#security)
+  - [Reliability](#reliability)
+  - [Usability](#usability)
 - [Technologies and Their Applications](#technologies-and-their-applications)
-    - [Backend](#backend)
-    - [Database](#database)
-    - [DevOps](#devops)
-    - [Security](#security-1)
+  - [Backend](#backend)
+  - [Database](#database)
+  - [DevOps](#devops)
+  - [Security](#security-1)
 - [REST API Endpoints](#rest-api-endpoints)
-    - [User Registration and Authentication](#user-registration-and-authentication-1)
-    - [Elements Management](#elements-management)
-    - [Projects Management](#projects-management)
-    - [Categories Management](#categories-management)
-    - [Colors Management](#colors-management)
+  - [User Registration and Authentication](#user-registration-and-authentication-1)
+  - [Elements Management](#elements-management)
+  - [Projects Management](#projects-management)
+  - [Categories Management](#categories-management)
+  - [Colors Management](#colors-management)
 - [Project Structure](#project-structure)
+- [Setup and Installation](#setup-and-installation)
 
 ## Project Description
 
@@ -521,6 +524,58 @@ backend/
 ├── .env
 ├── .gitignore
 ├── Dockerfile
-└── docker-compose.yml
+
+database/
+├── README.md
+├── schema.sql
+
+.env
+README.md
+docker-compose.yml
+
 
 ```
+## Setup and Installation
+
+To set up and run the application, follow these steps:
+
+1. **Clone the Repository:**
+
+   Clone the project repository from GitHub to your local machine.
+
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+    ```
+2. **Environment Configuration:**
+
+Create a .env file in the root directory and in the backend directory, based on the .env.example files provided.
+```bash
+# .env (root directory)
+DB_MAIN_USER=your_db_username
+DB_MAIN_PASSWORD=your_db_password
+DB_MAIN_NAME=furnishcrafts
+
+# .env (backend directory)
+DB_HOST=database
+DB_PORT=5432
+DB_NAME=furnishcrafts
+DB_USER=your_db_username
+DB_PASSWORD=your_db_password
+JWT_SECRET=your_jwt_secret
+```
+3. **Start the Application Using Docker:**
+
+Use Docker Compose to build and start the application. This command will start the frontend, backend, and database services defined in the docker-compose.yml file.
+```bash
+docker-compose up -d
+```
+4. **Access the Application:**
+
+The frontend application will be accessible at http://localhost:3000.
+The backend API will be accessible at http://localhost:3001.
+
+**Notes**
+Ensure that Docker and Docker Compose are installed on your system.
+The frontend and backend services are containerized for easy deployment and management.
+Modify the environment variables as needed to suit your development environment.

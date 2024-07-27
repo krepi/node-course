@@ -1,3 +1,4 @@
+
 -- Enum Types
 CREATE TYPE public.project_status_enum AS ENUM ('open', 'closed', 'ordered');
 CREATE TYPE public.user_role_enum AS ENUM ('administrator', 'standard', 'premium');

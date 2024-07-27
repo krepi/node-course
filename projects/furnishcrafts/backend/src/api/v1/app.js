@@ -16,7 +16,7 @@ app.use('/api/v1/categories', categoryRoutes)
 app.use('/api/v1/admin', adminRoutes)
 
 app.get('/', (req, res) => {
-    res.send('Hello from furnishcraft server')
+    res.send('Hello from furnishcraft server built with DOcker with postgres without frontend for a now')
 })
 
 export default app;
