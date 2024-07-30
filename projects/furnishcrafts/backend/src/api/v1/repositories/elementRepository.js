@@ -1,13 +1,13 @@
-import {readData} from "../../../helpers/mockedDataHelper.js";
+import {query} from "../../../config/configDB.js";
 
 class ElementRepository {
     async getAllElements() {
-        const data = await readData();
-        return data.elements;
+        const data = await query("SELECT * FROM elements");
+        return data.rows;
     }
     async getElementById(id) {
-        const data = await readData();
-        return data.elements.find(element => element.id === id);
+
+
     }
 }
 

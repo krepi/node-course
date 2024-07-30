@@ -128,8 +128,8 @@ efficiency, provide accurate cost estimates, and ensure timely delivery of custo
 curl -X 'POST'   '/api/v1/auth/register'   -H 'Content-Type: application/json'   -d '{
     "name": "John Doe",
     "email": "john.doe@example.com",
-    "password": "secret",
-    "role": "admin"
+    "password": "secret"
+  
   }'
 ```
 
@@ -137,7 +137,9 @@ curl -X 'POST'   '/api/v1/auth/register'   -H 'Content-Type: application/json'  
 
 ```json
 {
-  "token": "jwt_token_here"
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "password": "hashed secret"
 }
 ```
 
