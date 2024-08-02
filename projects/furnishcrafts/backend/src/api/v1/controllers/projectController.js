@@ -82,7 +82,22 @@ class ProjectController {
             res.status(400).json({ message: error.message });
         }
     }
+    /**
+     * Get detailed project elements
+     * @param {Object} req - Express request object
+     * @param {Object} res - Express response object
+     * @returns {Promise<void>}
+     */
+    async getProjectDetails(req, res) {
+        try {
+            const { id } = req.params;
+            const projectDetails = await projectService.getDetailedProjectElements(id);
 
+            res.status(200).json(projectDetails);
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
     /**
      * Remove element quantity from project
      * @param {Object} req - Express request object

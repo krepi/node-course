@@ -46,6 +46,20 @@ class ProjectRepository {
         const data = await query('SELECT element_id, quantity FROM project_elements WHERE project_id = $1', [projectId]);
         return data.rows;
     }
+    /**
+     * Get detailed project elements by project ID
+     * @param {number} projectId - Project ID
+     * @returns {Promise<Array>}
+     */
+    async getDetailedProjectElements(projectId) {
+        const data = await query(`
+            SELECT pe.element_id, pe.quantity, e.name, e.color, e.category, e.price, e.installation_cost, e.installation_time 
+            FROM project_elements pe
+            JOIN elements e ON pe.element_id = e.id
+            WHERE pe.project_id = $1
+        `, [projectId]);
+        return data.rows;
+    }
 
     /**
      * Create a new project

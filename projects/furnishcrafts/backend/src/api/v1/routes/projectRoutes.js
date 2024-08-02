@@ -25,6 +25,12 @@ router.post('/', authenticateToken, projectController.createProject);
  * @access Private
  */
 router.get('/:id', authenticateToken, projectController.getProjectById);
+/**
+ * @route GET /projects/:id/details
+ * @desc Get detailed project elements
+ * @access Private
+ */
+router.get('/:id/details', authenticateToken, projectController.getProjectDetails);
 
 /**
  * @route POST /projects/:projectId/elements

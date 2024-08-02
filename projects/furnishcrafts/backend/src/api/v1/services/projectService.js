@@ -55,7 +55,7 @@ class ProjectService {
         const elements = await elementService.getElementsByIds(elementIds);
 
         let totalCost = 0;
-        let totalTime = 0;
+        let totalTime = 0; // in minutes
         let outOfStock = [];
 
         projectElements.forEach(pe => {
@@ -63,8 +63,15 @@ class ProjectService {
             if (element.stock_amount < pe.quantity) {
                 outOfStock.push({ elementId: pe.element_id, available: element.stock_amount });
             }
-            totalCost += (element.price + element.installation_cost) * pe.quantity;
-            totalTime += element.installation_time * pe.quantity;
+            totalCost += (parseFloat(element.price) + parseFloat(element.installation_cost)) * pe.quantity;
+
+            // Convert installation_time to minutes if it contains hours
+            let installationTime = element.installation_time;
+            if (installationTime.hours) {
+                totalTime += installationTime.hours * 60 * pe.quantity;
+            } else if (installationTime.minutes) {
+                totalTime += installationTime.minutes * pe.quantity;
+            }
         });
 
         return { totalCost, totalTime, outOfStock };
@@ -103,7 +110,24 @@ class ProjectService {
         await projectRepository.addElementToProject(projectId, elementId, quantity);
         return await projectRepository.getProjectById(projectId);
     }
+    /**
+     * Get detailed project elements
+     * @param {number} projectId - Project ID
+     * @returns {Promise<Array>}
+     */
+    async getDetailedProjectElements(projectId) {
+        const project = await this.getProjectById(projectId);
+        const detailedElements = await projectRepository.getDetailedProjectElements(projectId);
+        const { totalCost, totalTime, outOfStock } = await this.calculateProjectCostAndTime(projectId);
 
+        return {
+            ...project,
+            totalCost,
+            totalTime,
+            outOfStock,
+            elements: detailedElements
+        };
+    }
     /**
      * Remove specific quantity of an element from project
      * @param {number} projectId - Project ID
