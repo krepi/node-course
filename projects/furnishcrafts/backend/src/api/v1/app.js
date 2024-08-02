@@ -17,7 +17,7 @@ app.use('/api/v1/admin', adminRoutes); // Add admin routes
 app.use('/api/v1/projects', projectRoutes); // Add project routes
 
 app.get('/', (req, res) => {
-    res.send('Hello from furnishcraft server built with Docker with postgres without frontend for now');
+    res.send('Hello from furnishcraft server built with Docker with postgres without frontend for now ;D');
 });
 
 export default app;

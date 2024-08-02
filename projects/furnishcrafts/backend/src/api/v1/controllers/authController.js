@@ -3,9 +3,9 @@ import { generateJWT } from '../../../helpers/customJWT/jwtHelper.js';
 
 class AuthController {
     /**
-     *
-     * @param req
-     * @param res
+     * Register a new user
+     * @param {Object} req - Express request object
+     * @param {Object} res - Express response object
      * @returns {Promise<void>}
      */
     async register(req, res) {
@@ -20,9 +20,9 @@ class AuthController {
     }
 
     /**
-     * 
-     * @param req
-     * @param res
+     * Login a user
+     * @param {Object} req - Express request object
+     * @param {Object} res - Express response object
      * @returns {Promise<void>}
      */
     async login(req, res) {
