@@ -62,6 +62,7 @@ class ProjectController {
             res.status(400).json({ message: error.message });
         }
     }
+
     /**
      * Add element to project
      * @param {Object} req - Express request object
@@ -81,24 +82,27 @@ class ProjectController {
             res.status(400).json({ message: error.message });
         }
     }
+
     /**
-     * Remove element from project
+     * Remove element quantity from project
      * @param {Object} req - Express request object
      * @param {Object} res - Express response object
      * @returns {Promise<void>}
      */
-    async removeElementFromProject(req, res) {
+    async removeElementQuantityFromProject(req, res) {
         try {
             const { projectId, elementId } = req.params;
+            const { quantity } = req.body;
             const userId = req.user.id;
             const role = req.user.role;
 
-            await projectService.removeElementFromProject(projectId, elementId, userId, role);
-            res.status(200).json({ message: 'Element removed from project' });
+            await projectService.removeElementQuantityFromProject(projectId, elementId, quantity, userId, role);
+            res.status(200).json({ message: 'Element quantity removed from project' });
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
     }
+
     /**
      * Close project and update stock
      * @param {Object} req - Express request object

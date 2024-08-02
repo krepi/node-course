@@ -1,5 +1,6 @@
 import projectRepository from '../repositories/projectRepository.js';
 import elementService from '../services/elementService.js';
+import elementRepository from '../repositories/elementRepository.js';
 
 class ProjectService {
     /**
@@ -78,6 +79,7 @@ class ProjectService {
         const projectElements = await projectRepository.getProjectElements(projectId);
         await elementService.updateElementStock(projectElements);
     }
+
     /**
      * Add element to project
      * @param {number} projectId - Project ID
@@ -101,24 +103,25 @@ class ProjectService {
         await projectRepository.addElementToProject(projectId, elementId, quantity);
         return await projectRepository.getProjectById(projectId);
     }
+
     /**
-     * Remove element from project
+     * Remove specific quantity of an element from project
      * @param {number} projectId - Project ID
      * @param {number} elementId - Element ID
+     * @param {number} quantity - Quantity of element to remove
      * @param {number} userId - User ID
      * @param {string} role - User role
      * @returns {Promise<void>}
      */
-    async removeElementFromProject(projectId, elementId, userId, role) {
+    async removeElementQuantityFromProject(projectId, elementId, quantity, userId, role) {
         // Validate project and user ownership or admin role
         const project = await projectRepository.getProjectById(projectId);
         if (!project) throw new Error('Project not found');
         if (project.user_id !== userId && role !== 'administrator') throw new Error('Not authorized to remove elements from this project');
 
-        // Remove element from project
-        await projectRepository.removeElementFromProject(projectId, elementId);
+        // Remove specified quantity of element from project
+        await projectRepository.removeElementQuantityFromProject(projectId, elementId, quantity);
     }
-
 
     /**
      * Close project and update stock
@@ -133,8 +136,9 @@ class ProjectService {
         if (!project) throw new Error('Project not found');
         if (project.user_id !== userId && role !== 'administrator') throw new Error('Not authorized to close this project');
 
-        // Update project status to 'ordered'
-        await projectRepository.updateProjectStatus(projectId, 'ordered');
+        // Update project status to 'ordered' and set end_date
+        const endDate = new Date().toISOString().split('T')[0];  // Current date
+        await projectRepository.updateProjectStatusAndEndDate(projectId, 'ordered', endDate);
 
         // Update stock for elements in the project
         const projectElements = await projectRepository.getProjectElements(projectId);

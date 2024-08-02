@@ -38,7 +38,7 @@ router.post('/:projectId/elements', authenticateToken, projectController.addElem
  * @desc Remove element from project
  * @access Private
  */
-router.delete('/:projectId/elements/:elementId', authenticateToken, projectController.removeElementFromProject);
+router.delete('/:projectId/elements/:elementId', authenticateToken, projectController.removeElementQuantityFromProject);
 
 /**
  * @route POST /projects/:projectId/close
@@ -48,4 +48,3 @@ router.delete('/:projectId/elements/:elementId', authenticateToken, projectContr
 router.post('/:projectId/close', authenticateToken, projectController.closeProject);
 
 export default router;
-

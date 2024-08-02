@@ -35,10 +35,11 @@ CREATE TABLE public.projects
 (
     id         SERIAL PRIMARY KEY,
     user_id    INTEGER NOT NULL,
+    name       VARCHAR(255) DEFAULT 'My Project' NOT NULL ,
     start_date DATE    NOT NULL,
     end_date   DATE,
-    status     public.project_status_enum DEFAULT 'open',
-    to_share   BOOLEAN                    DEFAULT false
+    status     public.project_status_enum DEFAULT 'open' NOT NULL ,
+    to_share   BOOLEAN                    DEFAULT false NOT NULL
 );
 
 CREATE TABLE public.users
