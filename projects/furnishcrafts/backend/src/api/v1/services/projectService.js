@@ -78,6 +78,68 @@ class ProjectService {
         const projectElements = await projectRepository.getProjectElements(projectId);
         await elementService.updateElementStock(projectElements);
     }
+    /**
+     * Add element to project
+     * @param {number} projectId - Project ID
+     * @param {number} elementId - Element ID
+     * @param {number} quantity - Quantity of element to add
+     * @param {number} userId - User ID
+     * @param {string} role - User role
+     * @returns {Promise<Object>}
+     */
+    async addElementToProject(projectId, elementId, quantity, userId, role) {
+        // Validate project and user ownership or admin role
+        const project = await projectRepository.getProjectById(projectId);
+        if (!project) throw new Error('Project not found');
+        if (project.user_id !== userId && role !== 'administrator') throw new Error('Not authorized to add elements to this project');
+
+        // Validate element existence
+        const element = await elementRepository.getElementById(elementId);
+        if (!element) throw new Error('Element not found');
+
+        // Add element to project
+        await projectRepository.addElementToProject(projectId, elementId, quantity);
+        return await projectRepository.getProjectById(projectId);
+    }
+    /**
+     * Remove element from project
+     * @param {number} projectId - Project ID
+     * @param {number} elementId - Element ID
+     * @param {number} userId - User ID
+     * @param {string} role - User role
+     * @returns {Promise<void>}
+     */
+    async removeElementFromProject(projectId, elementId, userId, role) {
+        // Validate project and user ownership or admin role
+        const project = await projectRepository.getProjectById(projectId);
+        if (!project) throw new Error('Project not found');
+        if (project.user_id !== userId && role !== 'administrator') throw new Error('Not authorized to remove elements from this project');
+
+        // Remove element from project
+        await projectRepository.removeElementFromProject(projectId, elementId);
+    }
+
+
+    /**
+     * Close project and update stock
+     * @param {number} projectId - Project ID
+     * @param {number} userId - User ID
+     * @param {string} role - User role
+     * @returns {Promise<void>}
+     */
+    async closeProject(projectId, userId, role) {
+        // Validate project and user ownership or admin role
+        const project = await projectRepository.getProjectById(projectId);
+        if (!project) throw new Error('Project not found');
+        if (project.user_id !== userId && role !== 'administrator') throw new Error('Not authorized to close this project');
+
+        // Update project status to 'ordered'
+        await projectRepository.updateProjectStatus(projectId, 'ordered');
+
+        // Update stock for elements in the project
+        const projectElements = await projectRepository.getProjectElements(projectId);
+        await elementService.updateElementStock(projectElements);
+    }
 }
 
 export default new ProjectService();

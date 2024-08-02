@@ -46,7 +46,18 @@ class ElementRepository {
      * @returns {Promise<Object>}
      */
     async createElement(elementData) {
-        const { name, color, category, width, length, depth, stock_amount, price, installation_cost, installation_time } = elementData;
+        const {
+            name,
+            color,
+            category,
+            width,
+            length,
+            depth,
+            stock_amount,
+            price,
+            installation_cost,
+            installation_time
+        } = elementData;
         const data = await query(
             'INSERT INTO elements (name, color, category, width, length, depth, stock_amount, price, installation_cost, installation_time) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
             [name, color, category, width, length, depth, stock_amount, price, installation_cost, installation_time]
@@ -61,7 +72,18 @@ class ElementRepository {
      * @returns {Promise<Object>}
      */
     async updateElement(id, elementData) {
-        const { name, color, category, width, length, depth, stock_amount, price, installation_cost, installation_time } = elementData;
+        const {
+            name,
+            color,
+            category,
+            width,
+            length,
+            depth,
+            stock_amount,
+            price,
+            installation_cost,
+            installation_time
+        } = elementData;
         const data = await query(
             'UPDATE elements SET name = $1, color = $2, category = $3, width = $4, length = $5, depth = $6, stock_amount = $7, price = $8, installation_cost = $9, installation_time = $10 WHERE id = $11 RETURNING *',
             [name, color, category, width, length, depth, stock_amount, price, installation_cost, installation_time, id]

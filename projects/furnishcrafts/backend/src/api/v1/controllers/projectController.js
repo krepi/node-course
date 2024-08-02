@@ -62,6 +62,61 @@ class ProjectController {
             res.status(400).json({ message: error.message });
         }
     }
+    /**
+     * Add element to project
+     * @param {Object} req - Express request object
+     * @param {Object} res - Express response object
+     * @returns {Promise<void>}
+     */
+    async addElementToProject(req, res) {
+        try {
+            const { projectId } = req.params;
+            const { elementId, quantity } = req.body;
+            const userId = req.user.id;
+            const role = req.user.role;
+
+            const project = await projectService.addElementToProject(projectId, elementId, quantity, userId, role);
+            res.status(200).json(project);
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
+    /**
+     * Remove element from project
+     * @param {Object} req - Express request object
+     * @param {Object} res - Express response object
+     * @returns {Promise<void>}
+     */
+    async removeElementFromProject(req, res) {
+        try {
+            const { projectId, elementId } = req.params;
+            const userId = req.user.id;
+            const role = req.user.role;
+
+            await projectService.removeElementFromProject(projectId, elementId, userId, role);
+            res.status(200).json({ message: 'Element removed from project' });
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
+    /**
+     * Close project and update stock
+     * @param {Object} req - Express request object
+     * @param {Object} res - Express response object
+     * @returns {Promise<void>}
+     */
+    async closeProject(req, res) {
+        try {
+            const { projectId } = req.params;
+            const userId = req.user.id;
+            const role = req.user.role;
+
+            await projectService.closeProject(projectId, userId, role);
+            res.status(200).json({ message: 'Project closed and stock updated' });
+        } catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    }
 }
 
 export default ProjectController;

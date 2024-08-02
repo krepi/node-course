@@ -6,24 +6,46 @@ const router = express.Router();
 const projectController = new ProjectController();
 
 /**
- * @route GET /api/v1/projects
+ * @route GET /projects
  * @desc Get all projects for a user
  * @access Private
  */
 router.get('/', authenticateToken, projectController.getProjects);
 
 /**
- * @route POST /api/v1/projects
+ * @route POST /projects
  * @desc Create a new project
  * @access Private
  */
 router.post('/', authenticateToken, projectController.createProject);
 
 /**
- * @route GET /api/v1/projects/:id
+ * @route GET /projects/:id
  * @desc Get project details by ID
  * @access Private
  */
 router.get('/:id', authenticateToken, projectController.getProjectById);
 
+/**
+ * @route POST /projects/:projectId/elements
+ * @desc Add element to project
+ * @access Private
+ */
+router.post('/:projectId/elements', authenticateToken, projectController.addElementToProject);
+
+/**
+ * @route DELETE /projects/:projectId/elements/:elementId
+ * @desc Remove element from project
+ * @access Private
+ */
+router.delete('/:projectId/elements/:elementId', authenticateToken, projectController.removeElementFromProject);
+
+/**
+ * @route POST /projects/:projectId/close
+ * @desc Close project and update stock
+ * @access Private
+ */
+router.post('/:projectId/close', authenticateToken, projectController.closeProject);
+
 export default router;
+

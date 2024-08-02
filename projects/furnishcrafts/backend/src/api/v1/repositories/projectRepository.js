@@ -53,6 +53,35 @@ class ProjectRepository {
         );
         return data.rows[0];
     }
+    /**
+     * Update project status
+     * @param {number} projectId - Project ID
+     * @param {string} status - New project status
+     * @returns {Promise<void>}
+     */
+    async updateProjectStatus(projectId, status) {
+        await query('UPDATE projects SET status = $1 WHERE id = $2', [status, projectId]);
+    }
+    /**
+     * Add element to project
+     * @param {number} projectId - Project ID
+     * @param {number} elementId - Element ID
+     * @param {number} quantity - Quantity of element to add
+     * @returns {Promise<void>}
+     */
+    async addElementToProject(projectId, elementId, quantity) {
+        await query('INSERT INTO project_elements (project_id, element_id, quantity) VALUES ($1, $2, $3) ON CONFLICT (project_id, element_id) DO UPDATE SET quantity = project_elements.quantity + $3', [projectId, elementId, quantity]);
+    }
+    /**
+     * Remove element from project
+     * @param {number} projectId - Project ID
+     * @param {number} elementId - Element ID
+     * @returns {Promise<void>}
+     */
+    async removeElementFromProject(projectId, elementId) {
+        await query('DELETE FROM project_elements WHERE project_id = $1 AND element_id = $2', [projectId, elementId]);
+    }
+
 }
 
 export default new ProjectRepository();
