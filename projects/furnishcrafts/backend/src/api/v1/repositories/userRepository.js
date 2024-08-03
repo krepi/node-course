@@ -1,4 +1,4 @@
-import {readData, writeData} from "../../../helpers/mockedDataHelper.js";
+
 import{query} from "../../../config/configDB.js";
 
 class UserRepository {
