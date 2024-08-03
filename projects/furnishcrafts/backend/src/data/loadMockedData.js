@@ -7,6 +7,11 @@ dotenv.config();
 
 const { Client } = pg;
 
+/**
+ * Function to load mocked data into the PostgreSQL database.
+ * This function reads the database connection details from environment variables
+ * and executes an SQL script to load mocked data.
+ */
 const loadMockedData = async () => {
     const client = new Client({
         user: process.env.DB_USER,
@@ -41,4 +46,5 @@ const loadMockedData = async () => {
 };
 
 loadMockedData();
+
 

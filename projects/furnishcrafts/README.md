@@ -1,8 +1,6 @@
 # Custom Furniture Manufacturing System
 
-## Table of Contents
-
-## Table of Contents
+### Table of Contents
 
 - [Project Description](#project-description)
 - [Functional Requirements](#functional-requirements)
@@ -29,8 +27,10 @@
   - [Projects Management](#projects-management)
   - [Categories Management](#categories-management)
   - [Colors Management](#colors-management)
+  - [Admin Management](#admin-management)
 - [Project Structure](#project-structure)
 - [Setup and Installation](#setup-and-installation)
+- [Future Enhancements](#future-enhancements)
 
 ## Project Description
 
@@ -908,3 +908,43 @@ The backend API will be accessible at http://localhost:3001.
 Ensure that Docker and Docker Compose are installed on your system.
 The frontend and backend services are containerized for easy deployment and management.
 Modify the environment variables as needed to suit your development environment.
+
+
+
+## Future Enhancements
+
+Here are some features and improvements planned for future versions of the project:
+
+1. **Swagger Documentation**:
+  - Integrate Swagger for better API documentation and easier testing.
+  - Provide detailed examples of requests and responses for each endpoint.
+
+2. **Notification System**:
+  - Implement a system to notify users about changes in the status of their projects.
+  - Include email notifications and possibly SMS notifications.
+
+3. **User Interface**:
+  - Develop a frontend for the application to improve user experience.
+  - Ensure that the UI is responsive and user-friendly.
+
+4. **Unit and Integration Testing**:
+  - Add comprehensive unit and integration tests to ensure code reliability and stability.
+  - Use tools like Jest or Mocha for testing.
+
+5. **Discounts and Promotions**:
+  - Implement advanced features for managing promotions and discounts.
+  - Allow administrators to set up and manage temporary and quantity-based discounts.
+
+6. **Performance Optimization**:
+  - Optimize database queries and application performance to handle more users and data efficiently.
+  - Consider implementing caching mechanisms where necessary.
+
+7. **Scalability Improvements**:
+  - Enhance the application’s scalability to support a larger user base and higher data loads.
+  - Explore microservices architecture if needed.
+
+8. **Advanced Security Features**:
+  - Implement more advanced security measures, such as two-factor authentication.
+  - Regularly update dependencies and perform security audits.
+
+Adding these features will enhance the functionality, performance, and user experience of the application. They will also ensure the application remains robust and scalable as it grows.
