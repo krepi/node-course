@@ -32,6 +32,19 @@
 - [Setup and Installation](#setup-and-installation)
 - [Future Enhancements](#future-enhancements)
 
+## Admin Credentials and JWT Secret
+
+### Admin Credentials
+To test the application with admin privileges, use the following login credentials:
+- **Email:** `admin@example.com`
+- **Password:** `admin123`
+
+### JWT Secret
+To generate a JWT secret token, use the `crypto.js` file located in the `src/helpers` folder. This will allow you to create a secure token for authentication purposes.
+```bash
+node src/helpers/crypto.js
+
+```
 ## Project Description
 
 The Custom Furniture Manufacturing System is a web application designed to streamline the process of ordering
