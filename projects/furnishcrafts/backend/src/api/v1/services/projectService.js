@@ -1,6 +1,6 @@
 import projectRepository from '../repositories/projectRepository.js';
 import elementService from '../services/elementService.js';
-import elementRepository from '../repositories/elementRepository.js';
+import projectCalculationService from './projectCalculationService.js';
 
 class ProjectService {
     /**
@@ -35,56 +35,33 @@ class ProjectService {
     }
 
     /**
+     * Get detailed project elements
+     * @param {number} projectId - Project ID
+     * @returns {Promise<Array>}
+     */
+    async getDetailedProjectElements(projectId) {
+        const project = await this.getProjectById(projectId);
+        const detailedElements = await projectRepository.getDetailedProjectElements(projectId);
+        const { purchaseCost, installationCost, totalCost, totalTime, outOfStock } = await this.calculateProjectCostAndTime(projectId);
+
+        return {
+            ...project,
+            purchaseCost,
+            installationCost,
+            totalCost,
+            totalTime,
+            outOfStock,
+            elements: detailedElements
+        };
+    }
+
+    /**
      * Create a new project
      * @param {Object} projectData - Project data
      * @returns {Promise<Object>}
      */
     async createProject(projectData) {
         return await projectRepository.createProject(projectData);
-    }
-
-    /**
-     * Calculate project cost and time
-     * @param {number} projectId - Project ID
-     * @returns {Promise<Object>}
-     */
-    async calculateProjectCostAndTime(projectId) {
-        const projectElements = await projectRepository.getProjectElements(projectId);
-        const elementIds = projectElements.map(pe => pe.element_id);
-
-        const elements = await elementService.getElementsByIds(elementIds);
-
-        let totalCost = 0;
-        let totalTime = 0; // in minutes
-        let outOfStock = [];
-
-        projectElements.forEach(pe => {
-            const element = elements.find(e => e.id === pe.element_id);
-            if (element.stock_amount < pe.quantity) {
-                outOfStock.push({ elementId: pe.element_id, available: element.stock_amount });
-            }
-            totalCost += (parseFloat(element.price) + parseFloat(element.installation_cost)) * pe.quantity;
-
-            // Convert installation_time to minutes if it contains hours
-            let installationTime = element.installation_time;
-            if (installationTime.hours) {
-                totalTime += installationTime.hours * 60 * pe.quantity;
-            } else if (installationTime.minutes) {
-                totalTime += installationTime.minutes * pe.quantity;
-            }
-        });
-
-        return { totalCost, totalTime, outOfStock };
-    }
-
-    /**
-     * Update project stock
-     * @param {number} projectId - Project ID
-     * @returns {Promise<void>}
-     */
-    async updateProjectStock(projectId) {
-        const projectElements = await projectRepository.getProjectElements(projectId);
-        await elementService.updateElementStock(projectElements);
     }
 
     /**
@@ -103,31 +80,24 @@ class ProjectService {
         if (project.user_id !== userId && role !== 'administrator') throw new Error('Not authorized to add elements to this project');
 
         // Validate element existence
-        const element = await elementRepository.getElementById(elementId);
+        const element = await elementService.getElementById(elementId);
         if (!element) throw new Error('Element not found');
 
         // Add element to project
         await projectRepository.addElementToProject(projectId, elementId, quantity);
         return await projectRepository.getProjectById(projectId);
     }
-    /**
-     * Get detailed project elements
-     * @param {number} projectId - Project ID
-     * @returns {Promise<Array>}
-     */
-    async getDetailedProjectElements(projectId) {
-        const project = await this.getProjectById(projectId);
-        const detailedElements = await projectRepository.getDetailedProjectElements(projectId);
-        const { totalCost, totalTime, outOfStock } = await this.calculateProjectCostAndTime(projectId);
 
-        return {
-            ...project,
-            totalCost,
-            totalTime,
-            outOfStock,
-            elements: detailedElements
-        };
+    /**
+     * Update project stock
+     * @param {number} projectId - Project ID
+     * @returns {Promise<void>}
+     */
+    async updateProjectStock(projectId) {
+        const projectElements = await projectRepository.getProjectElements(projectId);
+        await elementService.updateElementStock(projectElements);
     }
+
     /**
      * Remove specific quantity of an element from project
      * @param {number} projectId - Project ID
@@ -167,6 +137,21 @@ class ProjectService {
         // Update stock for elements in the project
         const projectElements = await projectRepository.getProjectElements(projectId);
         await elementService.updateElementStock(projectElements);
+    }
+
+    /**
+     * Calculate project cost and time
+     * @param {number} projectId - Project ID
+     * @returns {Promise<Object>}
+     */
+    async calculateProjectCostAndTime(projectId) {
+        const projectElements = await projectRepository.getProjectElements(projectId);
+        const elementIds = projectElements.map(pe => pe.element_id);
+
+        const elements = await elementService.getElementsByIds(elementIds);
+        const { purchaseCost, installationCost, totalCost, totalTime, outOfStock } = projectCalculationService.calculateProjectCostAndTime(projectElements, elements);
+
+        return { purchaseCost, installationCost, totalCost, totalTime, outOfStock };
     }
 }
 
