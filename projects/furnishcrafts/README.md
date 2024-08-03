@@ -879,8 +879,8 @@ To set up and run the application, follow these steps:
    Clone the project repository from GitHub to your local machine.
 
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/krepi/node-course/tree/main/projects/furnishcrafts
+   cd furnishcrafts
     ```
 2. **Environment Configuration:**
 
